@@ -1,0 +1,62 @@
+.formdiv {
+  margin-top: 6px;
+  position: relative;
+  height: 42px;
+  margin-bottom: 1.5rem;
+}
+.filter_products {
+  width: 320px;
+  padding: 2rem;
+  border-radius: 1rem;
+}
+.filterproducts__input {
+  position: absolute;
+  top: 7px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  border: 1px solid #a9a9a9;
+  border-radius: 0.5rem;
+  outline: none;
+  padding: 1rem;
+  background: none;
+  z-index: 1;
+}
+.form_label {
+  position: absolute;
+  left: 0.5rem;
+  top: 1rem;
+  padding: 0 0.25rem;
+  background-color: white;
+  color: #a9a9a9;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+.filterproducts__input:focus + .form_label {
+  top: -0.5rem;
+  left: 0.8rem;
+  color: #00cc99;
+  font-size: 0.9rem;
+  font-weight: 600;
+  z-index: 10;
+}
+
+.filterproducts__input:focus {
+  border: 2px solid #00cc99;
+}
+
+/* Reponsive */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .filterproducts__input {
+    width: 50%;
+  }
+}
+@media (max-width: 764px) {
+  .filter_products {
+    padding: 0px;
+  }
+  .filterproducts__input {
+    width: 79%;
+  }
+}
