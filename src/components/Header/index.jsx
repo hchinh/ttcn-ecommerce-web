@@ -26,20 +26,20 @@ function NavBar() {
   const handleLogout = () => {
     const action = logoutUser();
     dispatch(action);
-    history.push('/login1');
+    history.push('/login');
   };
 
   window.addEventListener('scroll', changeBackgroundColor);
 
   return (
     <div className={navBar ? 'navBar active ' : 'navBar '}>
-      <Link to={'/'} className='header'>
+      <Link to={'/'} className="header">
         PickBazar
       </Link>
       <div className={styles.navbar_right}>
-        <Link to='/cart'>
+        <Link to="/cart">
           <div className={styles.navbar__cart}>
-            <i className={styles.cart__image} class='fas fa-shopping-cart'></i>
+            <i className={styles.cart__image} class="fas fa-shopping-cart"></i>
             <div className={styles.cart__counter}>
               {!isNaN(cartItemsCount) ? cartItemsCount : 0}
             </div>
@@ -51,18 +51,18 @@ function NavBar() {
               avatarUrl ||
               'https://upload.wikimedia.org/wikipedia/vi/thumb/5/5c/Chelsea_crest.svg/1200px-Chelsea_crest.svg.png'
             }
-            alt='Ảnh đại diện'
+            alt="Ảnh đại diện"
             className={styles.img}
           />
           <ul className={styles.nav__itemsmenu}>
             <li className={styles.nav__menuitems}>
-              <div href=''>Tài khoản của tôi</div>
+              <div href="">Tài khoản của tôi</div>
             </li>
             <li className={styles.nav__menuitems}>
-              <div href=''>Đơn mua</div>
+              <div href="">Đơn mua</div>
             </li>
             <li className={styles.nav__menuitems}>
-              <div onClick={handleLogout} href=''>
+              <div onClick={handleLogout} href="">
                 Đăng xuẩt
               </div>
             </li>
