@@ -20,7 +20,7 @@ function SearchByName({ onChange }) {
           <input
             type="text"
             className={styles.filterproducts__input}
-            name="productName_contains"
+            name="q"
             placeholder=""
           />
           <label className={styles.form_label}>Search</label>

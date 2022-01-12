@@ -28,17 +28,17 @@ function ProductItem({ product }) {
         <div>
           <img
             className="product-item__thumbnail"
-            src={product.productThumbnail}
-            alt={product.productName}
+            src={product.thumbnail}
+            alt={product.name}
             width="100%"
           />
         </div>
 
         <div className="product-item__name">
-          <span>{product.productName}</span>
+          <span>{product.name}</span>
         </div>
         <div className="product-item__price">
-          <span>{formatPrice(product.salePrice)}</span>
+          <span>{formatPrice(product.price)}</span>
         </div>
       </div>
       <Dialog

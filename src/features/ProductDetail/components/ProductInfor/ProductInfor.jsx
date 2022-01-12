@@ -9,7 +9,7 @@ import { addToCart } from 'features/Cart/cartSlice';
 import { Snackbar } from '@material-ui/core';
 import MuiAlert from '@material-ui/lab/Alert';
 
-const Alert = (props) => <MuiAlert elevation={6} variant='filled' {...props} />;
+const Alert = (props) => <MuiAlert elevation={6} variant="filled" {...props} />;
 
 function ProductInfor(props) {
   const [product, setProduct] = useState(null);
@@ -26,7 +26,7 @@ function ProductInfor(props) {
 
   useEffect(() => {
     if (id) {
-      const getApi = `https://api-mts.herokuapp.com/products/${id}`;
+      const getApi = `https://ttcn-ecommerce-app.herokuapp.com/api/products/${id}`;
       axios.get(getApi).then((response) => {
         setProduct(response.data);
       });
@@ -52,16 +52,16 @@ function ProductInfor(props) {
         onClose={handleClose}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
       >
-        <Alert onClose={handleClose} severity='success'>
+        <Alert onClose={handleClose} severity="success">
           Thêm vào giỏ hàng thành công
         </Alert>
       </Snackbar>
-      <h4 className={styles.ProductName}>{product?.productName}</h4>
+      <h4 className={styles.ProductName}>{product?.name}</h4>
       <h5 className={styles.ProductBand}>
         {/* <i class="fab fa-apple"></i> */}
         {product?.brand}
       </h5>
-      <p className={styles.ProductDescription}>{product?.productDescription}</p>
+      <p className={styles.ProductDescription}>{product?.description}</p>
       <div className={styles.ProductTable}>
         <div className={styles.ProductTableRow}>
           <span className={styles.ProductItem}>Brand</span>
@@ -69,9 +69,7 @@ function ProductInfor(props) {
         </div>
         <div className={styles.ProductTableRow}>
           <span className={styles.ProductItem}>Loại</span>
-          <span className={styles.ProductItem}>
-            {product?.category.categoryName}
-          </span>
+          <span className={styles.ProductItem}>{product?.category.name}</span>
         </div>
         <div className={styles.ProductTableRow}>
           <span className={styles.ProductItem}>Nước</span>
@@ -84,7 +82,7 @@ function ProductInfor(props) {
       </div>
       <div className={styles.ProductCartWapper}>
         <div className={styles.ProductPriceWapper}>
-          {formatPrice(product?.salePrice)}
+          {formatPrice(product?.price)}
         </div>
         <AddToCartForm onSubmit={handleAddToCartForm} />
       </div>

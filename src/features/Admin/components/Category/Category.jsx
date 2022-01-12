@@ -111,8 +111,8 @@ function Category() {
         setCategoryList(
           list.map((x) => ({
             id: x.id,
-            name: x.categoryName,
-            thumbnail: x.categoryThumbnail,
+            name: x.name,
+            thumbnail: x.thumbnail,
           }))
         );
       } catch (error) {

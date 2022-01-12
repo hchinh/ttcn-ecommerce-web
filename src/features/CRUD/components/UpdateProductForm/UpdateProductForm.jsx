@@ -59,29 +59,25 @@ function UpdateProductForm({ onSubmit, onRemove, product }) {
   });
 
   const schema = yup.object().shape({
-    productName: yup.string().required('Please enter product name.'),
+    name: yup.string().required('Please enter product name.'),
 
-    productThumbnail: yup
-      .string()
-      .required('Please enter url of product thumbnail.'),
+    thumbnail: yup.string().required('Please enter url of product thumbnail.'),
 
-    productDescription: yup
-      .string()
-      .required('Please enter product description.'),
+    description: yup.string().required('Please enter product description.'),
 
     brand: yup.string().required('PLease enter product brand'),
 
-    salePrice: yup.string().required('Please enter product price.'),
+    price: yup.string().required('Please enter product price.'),
   });
 
   const form = useForm({
     defaultValues: {
-      productName: product.productName,
-      productThumbnail: product.productThumbnail,
-      productDescription: product.productDescription,
+      name: product.name,
+      thumbnail: product.thumbnail,
+      description: product.description,
       brand: product.brand,
-      salePrice: product.salePrice,
-      'category.id': product.category.id,
+      price: product.price,
+      categoryId: product.category.id,
     },
     resolver: yupResolver(schema),
   });
@@ -115,11 +111,11 @@ function UpdateProductForm({ onSubmit, onRemove, product }) {
       <h3 className={classes.title}>Update Product</h3>
 
       <form onSubmit={form.handleSubmit(handleUpdateProduct)}>
-        <InputField name="productName" label="Name" form={form} />
-        <InputField name="productThumbnail" label="Thumbnail URL" form={form} />
-        <InputField name="productDescription" label="Description" form={form} />
+        <InputField name="name" label="Name" form={form} />
+        <InputField name="thumbnail" label="Thumbnail URL" form={form} />
+        <InputField name="description" label="Description" form={form} />
         <InputField name="brand" label="Brand" form={form} />
-        <InputField name="salePrice" label="Price" form={form} />
+        <InputField name="price" label="Price" form={form} />
         <SelectField name="category.id" label="Category Type" form={form} />
         <div className={classes.submit}>
           <Button

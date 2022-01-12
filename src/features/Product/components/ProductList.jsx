@@ -18,14 +18,12 @@ function ProductList({ data = [] }) {
               >
                 <div
                   className={styles.home__productitemsimg}
-                  style={{ backgroundImage: `url(${item.productThumbnail})` }}
+                  style={{ backgroundImage: `url(${item.thumbnail})` }}
                 ></div>
-                <h4 className={styles.home__productitemsname}>
-                  {item.productName}
-                </h4>
+                <h4 className={styles.home__productitemsname}>{item.name}</h4>
                 <div className={styles.home__productprice}>
                   <span className={styles.home__productitemsprice}>
-                    {formatPrice(item.salePrice)}
+                    {formatPrice(item.price)}
                   </span>
                   <div className={styles.btn_cart}>
                     <i class="fas fa-search"></i>

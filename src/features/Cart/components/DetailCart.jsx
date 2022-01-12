@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '15px',
   },
 
-  salePrice: {
+  price: {
     fontWeight: 'bold',
   },
 }));
@@ -85,18 +85,18 @@ function DetailCart({ onRemove = null, onChange = null }) {
               <Grid container>
                 <Grid item lg={5} className={classes.thumbnail}>
                   <img
-                    src={item.product.productThumbnail}
-                    alt={item.product.productName}
+                    src={item.product.thumbnail}
+                    alt={item.product.name}
                     width="75px"
                   />
 
                   <Typography className={classes.name}>
-                    {item.product.productName}
+                    {item.product.name}
                   </Typography>
                 </Grid>
                 <Grid item lg={2} className={classes.center}>
-                  <Box component="span" className={classes.salePrice}>
-                    {formatPrice(item.product.salePrice)}
+                  <Box component="span" className={classes.price}>
+                    {formatPrice(item.product.price)}
                   </Box>
                 </Grid>
                 <Grid item lg={2} className={classes.center}>
@@ -107,7 +107,7 @@ function DetailCart({ onRemove = null, onChange = null }) {
                 </Grid>
                 <Grid item lg={2} className={classes.center}>
                   {!isNaN(item.quantity)
-                    ? formatPrice(item.product.salePrice * item.quantity)
+                    ? formatPrice(item.product.price * item.quantity)
                     : formatPrice(0)}
                 </Grid>
                 <Grid item lg={1} className={classes.center}>

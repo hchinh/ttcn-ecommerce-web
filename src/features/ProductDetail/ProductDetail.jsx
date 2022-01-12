@@ -30,7 +30,7 @@ function ProductDetail(props) {
 
   useEffect(() => {
     if (id) {
-      const getApi = `https://api-mts.herokuapp.com/products/${id}`;
+      const getApi = `https://ttcn-ecommerce-app.herokuapp.com/api/products/${id}`;
       axios.get(getApi).then((response) => {
         setProduct(response.data);
       });
@@ -61,7 +61,7 @@ function ProductDetail(props) {
                   </Link>
                 </div>
                 <img
-                  src={product?.productThumbnail}
+                  src={product?.thumbnail}
                   alt=""
                   className={styles.product_img}
                 />

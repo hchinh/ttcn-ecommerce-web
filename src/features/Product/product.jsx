@@ -40,8 +40,8 @@ function Product(props) {
     const params = queryString.parse(location.search);
     return {
       ...params,
-      _page: Number.parseInt(params._page) || 1,
-      _limit: Number.parseInt(params._limit) || 20,
+      page: Number.parseInt(params.page) || 1,
+      limit: Number.parseInt(params.limit) || 20,
     };
   }, [location.search]);
 
@@ -61,7 +61,7 @@ function Product(props) {
   const handlePageChange = (e, page) => {
     const filters = {
       ...queryParams,
-      _page: page,
+      page,
     };
     history.push({
       pathname: history.location.pathname,

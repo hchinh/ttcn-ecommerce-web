@@ -18,7 +18,7 @@ function SearchByName({ onChange }) {
         <input
           type="text"
           className="filter-products__input"
-          name="productName_contains"
+          name="q"
           placeholder="Search By Name"
         />
       </form>

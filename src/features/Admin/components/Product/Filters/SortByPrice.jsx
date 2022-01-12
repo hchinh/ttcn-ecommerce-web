@@ -17,10 +17,10 @@ function SortByPrice({ onChange }) {
     <div className="filter-products">
       <select className="filter-products__box" onChange={handleSortChange}>
         <option hidden>Price</option>
-        <option className="filter-products__options" value="salePrice:ASC">
+        <option className="filter-products__options" value="price,ASC">
           Lowest to Highest
         </option>
-        <option className="filter-products__options" value="salePrice:DESC">
+        <option className="filter-products__options" value="price,DESC">
           Highest to Lowest
         </option>
       </select>

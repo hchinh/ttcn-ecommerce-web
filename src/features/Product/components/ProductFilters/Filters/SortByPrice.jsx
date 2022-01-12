@@ -19,16 +19,10 @@ function SortByPrice({ onChange }) {
         onChange={handleSortChange}
       >
         <option hidden>Price</option>
-        <option
-          className={styles.filterproducts__options}
-          value="salePrice:ASC"
-        >
+        <option className={styles.filterproducts__options} value="price,ASC">
           Lowest to Highest
         </option>
-        <option
-          className={styles.filterproducts__options}
-          value="salePrice:DESC"
-        >
+        <option className={styles.filterproducts__options} value="price,DESC">
           Highest to Lowest
         </option>
       </select>

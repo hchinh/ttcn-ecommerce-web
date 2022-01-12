@@ -50,29 +50,25 @@ const useStyles = makeStyles((theme) => ({
 function AddProductForm({ onSubmit }) {
   const classes = useStyles();
   const schema = yup.object().shape({
-    productName: yup.string().required('Please enter product name.'),
+    name: yup.string().required('Please enter product name.'),
 
-    productThumbnail: yup
-      .string()
-      .required('Please enter url of product thumbnail.'),
+    thumbnail: yup.string().required('Please enter url of product thumbnail.'),
 
-    productDescription: yup
-      .string()
-      .required('Please enter product description.'),
+    description: yup.string().required('Please enter product description.'),
 
     brand: yup.string().required('PLease enter product brand'),
 
-    salePrice: yup.string().required('Please enter product price.'),
+    price: yup.string().required('Please enter product price.'),
   });
 
   const form = useForm({
     defaultValues: {
-      productName: '',
-      productThumbnail: '',
-      productDescription: '',
+      name: '',
+      thumbnail: '',
+      description: '',
       brand: '',
-      salePrice: '',
-      'category.id': '',
+      price: '',
+      categoryId: '',
     },
     resolver: yupResolver(schema),
   });
@@ -96,11 +92,11 @@ function AddProductForm({ onSubmit }) {
       <h3 className={classes.title}>Add New Product</h3>
 
       <form onSubmit={form.handleSubmit(handleAddProduct)}>
-        <InputField name="productName" label="Name" form={form} />
-        <InputField name="productThumbnail" label="Thumbnail URL" form={form} />
-        <InputField name="productDescription" label="Description" form={form} />
+        <InputField name="name" label="Name" form={form} />
+        <InputField name="thumbnail" label="Thumbnail URL" form={form} />
+        <InputField name="description" label="Description" form={form} />
         <InputField name="brand" label="Brand" form={form} />
-        <InputField name="salePrice" label="Price" form={form} />
+        <InputField name="price" label="Price" form={form} />
         <SelectField name="category.id" label="Category Type" form={form} />
         <Button
           className={classes.submit}

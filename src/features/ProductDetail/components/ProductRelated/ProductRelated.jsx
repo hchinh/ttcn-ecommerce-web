@@ -7,12 +7,12 @@ import { Link } from 'react-router-dom';
 function ProductRelated(props) {
   const [products, setProducts] = useState([]);
   const filters = {
-    _limit: 5,
-    _start: 10,
+    limit: 5,
+    page: 1,
   };
   useEffect(() => {
     const paramsString = queryString.stringify(filters);
-    const getApi = `https://api-mts.herokuapp.com/products?${paramsString}`;
+    const getApi = `https://ttcn-ecommerce-app.herokuapp.com/api/products?${paramsString}`;
     axios.get(getApi).then((response) => {
       setProducts(response.data);
     });
@@ -26,22 +26,20 @@ function ProductRelated(props) {
             {products.map((item) => (
               <div className={styles.grid__column24}>
                 <Link
-                  to={`/productDetails/${item.id}`}
+                  to={`/product/${item.id}`}
                   className={styles.home__productitems}
                 >
                   <div
                     className={styles.home__productitemsimg}
-                    style={{ backgroundImage: `url(${item.productThumbnail})` }}
+                    style={{ backgroundImage: `url(${item.thumbnail})` }}
                   ></div>
-                  <h4 className={styles.home__productitemsname}>
-                    {item.productName}
-                  </h4>
+                  <h4 className={styles.home__productitemsname}>{item.name}</h4>
                   <div className={styles.home__productprice}>
                     <span className={styles.home__productitemsprice}>
-                      {formatPrice(item.salePrice)}
+                      {formatPrice(item.price)}
                     </span>
                     <div className={styles.btn_cart}>
-                      <i class='fas fa-search'></i>
+                      <i class="fas fa-search"></i>
                       Details
                     </div>
                   </div>

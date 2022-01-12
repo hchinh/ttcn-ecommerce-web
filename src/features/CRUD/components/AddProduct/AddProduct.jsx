@@ -15,7 +15,7 @@ function AddProduct({ closeDialog }) {
     try {
       const formValues = {
         ...values,
-        salePrice: Number.parseInt(values.salePrice),
+        price: Number.parseInt(values.price),
       };
 
       await productApi.add(formValues);

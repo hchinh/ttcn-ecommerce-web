@@ -12,7 +12,7 @@ function ProductFilters({ onChange }) {
   const handleCategoryChange = (newCategoryId) => {
     if (!onChange) return;
     const newFilters = {
-      'category.id': newCategoryId,
+      categoryId: newCategoryId,
     };
     onChange(newFilters);
   };
@@ -21,7 +21,7 @@ function ProductFilters({ onChange }) {
     if (!onChange) return;
 
     const newFilters = {
-      _sort: newSort,
+      sort: newSort,
     };
     onChange(newFilters);
   };
@@ -30,7 +30,7 @@ function ProductFilters({ onChange }) {
     if (!onChange) return;
 
     const newFilters = {
-      productName_contains: newSearch,
+      q: newSearch,
     };
     onChange(newFilters);
   };

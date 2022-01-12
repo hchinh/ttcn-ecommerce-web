@@ -14,7 +14,7 @@ function ProductFilters({ onChange }) {
     if (!onChange) return;
 
     const newFilters = {
-      'category.id': newCategoryId,
+      categoryId: newCategoryId,
     };
     onChange(newFilters);
   };
@@ -23,7 +23,7 @@ function ProductFilters({ onChange }) {
     if (!onChange) return;
 
     const newFilters = {
-      _sort: newSort,
+      sort: newSort,
     };
     onChange(newFilters);
   };
@@ -32,7 +32,7 @@ function ProductFilters({ onChange }) {
     if (!onChange) return;
 
     const newFilters = {
-      productName_contains: newSearch,
+      q: newSearch,
     };
     onChange(newFilters);
   };
@@ -41,9 +41,9 @@ function ProductFilters({ onChange }) {
     <div className="product-filters">
       <h1 className="product-filters__title">Products</h1>
       <div className="product-filters__box">
-      <FilterByCategory onChange={handleCategoryChange} />
-      <SortByPrice onChange={handleSortChange} />
-      <SearchByName onChange={handleSearch} />
+        <FilterByCategory onChange={handleCategoryChange} />
+        <SortByPrice onChange={handleSortChange} />
+        <SearchByName onChange={handleSearch} />
       </div>
     </div>
   );

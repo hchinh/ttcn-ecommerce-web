@@ -32,7 +32,7 @@ function SelectField(props) {
         setCategoryList(
           list.map((x) => ({
             id: x.id,
-            name: x.categoryName,
+            name: x.name,
           }))
         );
       } catch (error) {
@@ -42,7 +42,7 @@ function SelectField(props) {
   }, []);
 
   return (
-    <FormControl fullWidth margin='normal' variant='outlined' error={hasError}>
+    <FormControl fullWidth margin="normal" variant="outlined" error={hasError}>
       <InputLabel htmlFor={name}>{label}</InputLabel>
       <Controller
         name={name}
