@@ -4,26 +4,23 @@ import './Customer.scss';
 import { Dialog, Grid, IconButton } from '@material-ui/core';
 import DialogContent from '@material-ui/core/DialogContent';
 import { Close } from '@material-ui/icons';
-import categoryApi from 'api/categoryApi';
 import Table from 'components/Table/Table';
-import AddCategory from 'features/CRUD/components/AddCategory/AddCategory';
 import ConfirmationDialog from 'features/CRUD/components/ConfirmationDialog/ConfirmationDialog';
 import { useSnackbar } from 'notistack';
 import  { useEffect, useState } from 'react';
 import customerApi from 'api/customerApi';
 import UpdateCustomer from 'features/CRUD/components/UpdateCustomer/UpdateCustomer';
-//import './Category.scss';
 
 const MODE = {
   CREATE: 'create',
   UPDATE: 'update',
 };
 
-function Category() {
-  const [categoryList, setCategoryList] = useState();
+function Customer() {
+  const [CustomerList, setCustomerList] = useState();
   const [open, setOpen] = useState(false);
   const [mode, setMode] = useState(MODE.CREATE);
-  const [category, setCategory] = useState();
+  const [Customer, setCustomer] = useState();
   const [confirmDialog, setConfirmDialog] = useState({
     isOpened: false,
     title: '',
@@ -31,7 +28,7 @@ function Category() {
   });
   const { enqueueSnackbar } = useSnackbar();
 
-  const categoryHead = ['ID', 'Name', 'Phone Number','Email', 'Actions'];
+  const CustomerHead = ['ID', 'Name', 'Phone Number','Email', 'Actions'];
 
   const renderHead = (item, index) => <th key={index}>{item}</th>;
 
@@ -41,22 +38,22 @@ function Category() {
       <td>{item.name}</td>
       <td>{item.phoneNumber}</td>
       <td>{item.email}</td>
-      <td className="category__actions">
+      <td className="Customer__actions">
         <button
-          className="category__edit-button"
+          className="Customer__edit-button"
           onClick={() => handleUpdateOpen(item)}
         >
           Edit
         </button>
         <i
-          className="far fa-trash-alt category__delete-icon"
+          className="far fa-trash-alt Customer__delete-icon"
           onClick={() => {
             setConfirmDialog({
               isOpened: true,
               title: 'Are you sure to delete this customer?',
               subTitle: "You can't undo this operation",
               onConfirm: () => {
-                handleRemoveCategory(item);
+                handleRemoveCustomer(item);
               },
             });
           }}
@@ -71,7 +68,7 @@ function Category() {
   };
 
   const handleUpdateOpen = (item) => {
-    setCategory(item);
+    setCustomer(item);
     setMode(MODE.UPDATE);
     setOpen(true);
   };
@@ -80,7 +77,7 @@ function Category() {
     setOpen(false);
   };
 
-  const handleRemoveCategory = async (item) => {
+  const handleRemoveCustomer = async (item) => {
     setConfirmDialog({
       ...confirmDialog,
       isOpened: false,
@@ -113,7 +110,7 @@ function Category() {
     (async () => {
       try {
         const list = await customerApi.getAll();
-        setCategoryList(
+        setCustomerList(
           list.map((x) => ({
             id: x.id,
             name: x.name,
@@ -128,29 +125,19 @@ function Category() {
   }, []);
 
   return (
-    <div className="category">
-      <h3 className="category__header">Customers</h3>
+    <div className="Customer">
+      <h3 className="Customer__header">Customers</h3>
       <Grid container>
         <Grid item lg={12} xs={12}>
-          <div className="category__card">
-            <div className="category__card__body">
+          <div className="Customer__card">
+            <div className="Customer__card__body">
               <Table
-                headData={categoryHead}
+                headData={CustomerHead}
                 renderHead={(item, index) => renderHead(item, index)}
-                bodyData={categoryList}
+                bodyData={CustomerList}
                 renderBody={(item, index) => renderBody(item, index)}
               />
-              {/* <div className="category__add">
-                <button
-                  className="category__add-button"
-                  onClick={handleAddOpen}
-                >
-                  <i className="fas fa-plus category__add-icon"></i>
-                  <span className="category__add-button__title">
-                    Add New Customer
-                  </span>
-                </button>
-              </div> */}
+              
             </div>
           </div>
         </Grid>
@@ -165,10 +152,9 @@ function Category() {
           <Close />
         </IconButton>
         <DialogContent>
-          {mode === MODE.CREATE && <AddCategory closeDialog={handleClose} />}
 
           {mode === MODE.UPDATE && (
-            <UpdateCustomer closeDialog={handleClose} category={category} />
+            <UpdateCustomer closeDialog={handleClose} Customer={Customer} />
           )}
         </DialogContent>
       </Dialog>
@@ -181,4 +167,4 @@ function Category() {
   );
 }
 
-export default Category;
+export default Customer;

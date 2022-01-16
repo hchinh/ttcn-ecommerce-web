@@ -9,7 +9,7 @@ import * as yup from 'yup';
 
 UpdateCustomerForm.propTypes = {
   onSubmit: PropTypes.func,
-  category: PropTypes.object,
+  Customer: PropTypes.object,
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function UpdateCustomerForm({ onSubmit, category }) {
+function UpdateCustomerForm({ onSubmit, Customer }) {
   const classes = useStyles();
 
   const schema = yup.object().shape({
@@ -60,14 +60,14 @@ function UpdateCustomerForm({ onSubmit, category }) {
 
   const form = useForm({
     defaultValues: {
-      name: category.name,
-      email: category.email,
-      phoneNumber: category.phoneNumber,
+      name: Customer.name,
+      email: Customer.email,
+      phoneNumber: Customer.phoneNumber,
     },
     resolver: yupResolver(schema),
   });
 
-  const handleUpdateCategory = async (values) => {
+  const handleUpdateCustomer = async (values) => {
     if (onSubmit) {
       await onSubmit(values);
     }
@@ -85,7 +85,7 @@ function UpdateCustomerForm({ onSubmit, category }) {
 
       <h3 className={classes.title}>Update Customer</h3>
 
-      <form onSubmit={form.handleSubmit(handleUpdateCategory)}>
+      <form onSubmit={form.handleSubmit(handleUpdateCustomer)}>
         <InputField name="name" label="Name" form={form} />
         <InputField name="email" label="email" form={form} />
         <InputField name="phoneNumber" label="phoneNumber" form={form} />

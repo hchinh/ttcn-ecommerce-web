@@ -1,4 +1,3 @@
-import categoryApi from 'api/categoryApi';
 import customerApi from 'api/customerApi';
 import { useSnackbar } from 'notistack';
 import PropTypes from 'prop-types';
@@ -7,10 +6,10 @@ import UpdateCustomerForm from '../UpdateCustomerForm/UpdateCustomerForm';
 
 UpdateCustomer.propTypes = {
   closeDialog: PropTypes.func,
-  category: PropTypes.object,
+  Customer: PropTypes.object,
 };
 
-function UpdateCustomer({ closeDialog, category }) {
+function UpdateCustomer({ closeDialog, Customer }) {
   const { enqueueSnackbar } = useSnackbar();
 
   const handleUpdate = async (values) => {
@@ -19,7 +18,7 @@ function UpdateCustomer({ closeDialog, category }) {
         ...values,
         userName: "employee01",
         password: "",
-        id: category.id,
+        id: Customer.id,
       };
 
       await customerApi.update(formValues);
@@ -49,7 +48,7 @@ function UpdateCustomer({ closeDialog, category }) {
 
   return (
     <div>
-      <UpdateCustomerForm onSubmit={handleUpdate} category={category} />
+      <UpdateCustomerForm onSubmit={handleUpdate} Customer={Customer} />
     </div>
   );
 }
