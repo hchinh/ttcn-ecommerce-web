@@ -1,19 +1,24 @@
-import axiosClient from "./axiosClient"
+import axiosClient from './axiosClient';
 
 const customerApi = {
   getAll(params) {
-    const url = '/customers'
-    return axiosClient.get(url, { params })
+    const url = '/customers';
+    return axiosClient.get(url, { params });
   },
 
-  remove(id) {
+  get(id) {
     const url = `/customers/${id}`;
+    return axiosClient.get(url);
+  },
+
+  add(data) {
+    const url = '/customers';
     const token = {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('access-token')}`,
       },
     };
-    return axiosClient.delete(url, token);
+    return axiosClient.post(url, data, token);
   },
 
   update(data) {
@@ -26,15 +31,15 @@ const customerApi = {
     return axiosClient.put(url, data, token);
   },
 
-  add(data) {
-    const url = '/customers';
+  remove(id) {
+    const url = `/customers/${id}`;
     const token = {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('access-token')}`,
       },
     };
-    return axiosClient.post(url, data, token);
+    return axiosClient.delete(url, token);
   },
-}
+};
 
 export default customerApi;

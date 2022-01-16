@@ -6,16 +6,16 @@ import StorageKeys from 'constants/storage-keys';
 export const login = createAsyncThunk('admin/login', async (payload) => {
   const data = await adminApi.login(payload);
 
-  localStorage.setItem(StorageKeys.TOKEN, data.jwt);
-  localStorage.setItem(StorageKeys.USER, JSON.stringify(data.user));
+  localStorage.setItem(StorageKeys.TOKEN, data.token);
+  localStorage.setItem(StorageKeys.USER, JSON.stringify(data.username));
 
   return data.user;
 });
-export const loginUser = createAsyncThunk('user/login', async (payload) => {
+export const loginUser = createAsyncThunk('/login', async (payload) => {
   const data = await userApi.login(payload);
 
-  localStorage.setItem(StorageUser.TOKEN, data.jwt);
-  localStorage.setItem(StorageUser.USER, JSON.stringify(data.user));
+  localStorage.setItem(StorageUser.TOKEN, data.token);
+  localStorage.setItem(StorageUser.USER, JSON.stringify(data.username));
 
   return data.user;
 });
