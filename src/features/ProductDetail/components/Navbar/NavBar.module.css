@@ -106,6 +106,12 @@
   animation: nav__notifyapp ease-in 0.25s;
   box-shadow: -30px 30px 20px rgba(0, 0, 0, 0.1);
 }
+.nav__itemsmenu a:visited {
+  color: black;
+}
+.nav__itemsmenu a:active {
+  color: black;
+}
 .nav__menuitems {
   padding: 10px;
 }

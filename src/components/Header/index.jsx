@@ -55,17 +55,12 @@ function NavBar() {
             className={styles.img}
           />
           <ul className={styles.nav__itemsmenu}>
-            <li className={styles.nav__menuitems}>
-              <div href="">Tài khoản của tôi</div>
-            </li>
-            <li className={styles.nav__menuitems}>
-              <div href="">Đơn mua</div>
-            </li>
-            <li className={styles.nav__menuitems}>
-              <div onClick={handleLogout} href="">
-                Đăng xuẩt
-              </div>
-            </li>
+            <Link to="/profile">
+              <li className={styles.nav__menuitems}>Profile</li>
+            </Link>
+            <Link to="/login">
+              <li className={styles.nav__menuitems}>Logout</li>
+            </Link>
           </ul>
         </li>
       </div>
