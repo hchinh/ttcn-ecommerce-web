@@ -34,16 +34,13 @@ const useStyles = makeStyles((theme) => ({
 function LoginForm({ onSubmit = null }) {
   const classes = useStyles();
   const schema = yup.object().shape({
-    identifier: yup
-      .string()
-      .required('Please enter your email.')
-      .email('Please enter a valid email address.'),
+    userName: yup.string().required('Please enter your username.'),
     password: yup.string().required('Please enter your password.'),
   });
 
   const form = useForm({
     defaultValues: {
-      identifier: '',
+      userName: '',
       password: '',
     },
     resolver: yupResolver(schema),
@@ -65,7 +62,7 @@ function LoginForm({ onSubmit = null }) {
         <div className={styles.form_inner}>
           <h2 className={styles.title}>Login</h2>
           <h4 className={styles.des}>Login for admin</h4>
-          <InputField name="identifier" label="Email" form={form} />
+          <InputField name="userName" label="Email" form={form} />
           <PasswordField name="password" label="Password" form={form} />
           <Button
             className={classes.submit}
