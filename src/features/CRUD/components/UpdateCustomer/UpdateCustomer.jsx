@@ -1,32 +1,33 @@
-import categoryApi from 'api/categoryApi';
+import customerApi from 'api/customerApi';
 import { useSnackbar } from 'notistack';
 import PropTypes from 'prop-types';
 import React from 'react';
-import UpdateCategoryForm from '../UpdateCategoryForm/UpdateCategoryForm';
+import UpdateCustomerForm from '../UpdateCustomerForm/UpdateCustomerForm';
 
-UpdateCategory.propTypes = {
+UpdateCustomer.propTypes = {
   closeDialog: PropTypes.func,
-  category: PropTypes.object,
+  Customer: PropTypes.object,
 };
 
-function UpdateCategory({ closeDialog, category }) {
+function UpdateCustomer({ closeDialog, Customer }) {
   const { enqueueSnackbar } = useSnackbar();
 
   const handleUpdate = async (values) => {
-    
     try {
       const formValues = {
         ...values,
-        id: category.id,
+        userName: "employee01",
+        password: "",
+        id: Customer.id,
       };
-      console.log("handleUpdate-UpdateCategory",formValues)
-      await categoryApi.update(formValues);
+
+      await customerApi.update(formValues);
 
       if (closeDialog) {
         closeDialog();
       }
 
-      enqueueSnackbar('Update category successfully.', {
+      enqueueSnackbar('Update customer successfully.', {
         variant: 'success',
         anchorOrigin: {
           horizontal: 'right',
@@ -47,9 +48,9 @@ function UpdateCategory({ closeDialog, category }) {
 
   return (
     <div>
-      <UpdateCategoryForm onSubmit={handleUpdate} category={category} />
+      <UpdateCustomerForm onSubmit={handleUpdate} Customer={Customer} />
     </div>
   );
 }
 
-export default UpdateCategory;
+export default UpdateCustomer;
