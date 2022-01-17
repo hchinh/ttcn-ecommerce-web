@@ -1,6 +1,7 @@
 import AdminFeature from 'features/Admin';
 import LoginPage from 'features/Auth/pages/LoginPage';
 import CartFeature from 'features/Cart';
+import ProfileFeature from 'features/Profile';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import ErrorPage from './components/ErrorPage/ErrorPage';
@@ -15,6 +16,7 @@ function App() {
         <Route path="/login" component={UserLoginPage} />
         <Route path="/admin/login" component={LoginPage} />
         <Route path="/admin" component={AdminFeature} />
+        <Route path="/profile" component={ProfileFeature} />
         <Route path="/cart" component={CartFeature} />
         <Route path="/product/:id" exact component={ProductDetail} />
         <Route component={ErrorPage} />
