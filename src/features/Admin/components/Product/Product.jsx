@@ -15,7 +15,7 @@ function Product(props) {
   const history = useHistory();
   const [productList, setProductList] = useState();
   const [pagination, setPagination] = useState({
-    page: 1,
+    page: 0,
     limit: 20,
     total: 20,
   });
@@ -25,7 +25,7 @@ function Product(props) {
     const params = queryString.parse(location.search);
     return {
       ...params,
-      page: Number.parseInt(params.page) || 1,
+      page: Number.parseInt(params.page) || 0,
       limit: Number.parseInt(params.limit) || 20,
     };
   }, [location.search]);
