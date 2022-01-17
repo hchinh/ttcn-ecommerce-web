@@ -67,6 +67,8 @@ function UpdateProductForm({ onSubmit, onRemove, product }) {
 
     brand: yup.string().required('PLease enter product brand'),
 
+    unitInStock: yup.number().required('Please enter unit in stock.').min(0),
+
     price: yup.string().required('Please enter product price.'),
   });
 
@@ -77,6 +79,7 @@ function UpdateProductForm({ onSubmit, onRemove, product }) {
       description: product.description,
       brand: product.brand,
       price: product.price,
+      unitInStock: product.unitInStock,
       categoryId: product.category.id,
     },
     resolver: yupResolver(schema),
@@ -116,7 +119,8 @@ function UpdateProductForm({ onSubmit, onRemove, product }) {
         <InputField name="description" label="Description" form={form} />
         <InputField name="brand" label="Brand" form={form} />
         <InputField name="price" label="Price" form={form} />
-        <SelectField name="category.id" label="Category Type" form={form} />
+        <InputField name="unitInStock" label="Available" form={form} />
+        <SelectField name="categoryId" label="Category Type" form={form} />
         <div className={classes.submit}>
           <Button
             disabled={isSubmitting}

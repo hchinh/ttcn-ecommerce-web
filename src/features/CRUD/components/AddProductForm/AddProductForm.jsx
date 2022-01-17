@@ -52,11 +52,7 @@ function AddProductForm({ onSubmit }) {
   const schema = yup.object().shape({
     name: yup.string().required('Please enter product name.'),
 
-    thumbnail: yup.string().required('Please enter url of product thumbnail.'),
-
-    description: yup.string().required('Please enter product description.'),
-
-    brand: yup.string().required('PLease enter product brand'),
+    unitInStock: yup.number().required('Please enter unit in stock.').min(0),
 
     price: yup.string().required('Please enter product price.'),
   });
@@ -67,7 +63,8 @@ function AddProductForm({ onSubmit }) {
       thumbnail: '',
       description: '',
       brand: '',
-      price: '',
+      price: 0,
+      unitInStock: 0,
       categoryId: '',
     },
     resolver: yupResolver(schema),
@@ -97,7 +94,8 @@ function AddProductForm({ onSubmit }) {
         <InputField name="description" label="Description" form={form} />
         <InputField name="brand" label="Brand" form={form} />
         <InputField name="price" label="Price" form={form} />
-        <SelectField name="category.id" label="Category Type" form={form} />
+        <InputField name="unitInStock" label="Available" form={form} />
+        <SelectField name="categoryId" label="Category Type" form={form} />
         <Button
           className={classes.submit}
           disabled={isSubmitting}
