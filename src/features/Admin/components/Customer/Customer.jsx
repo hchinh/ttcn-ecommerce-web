@@ -1,5 +1,6 @@
 import React from 'react';
 import './Customer.scss';
+
 import { Dialog, Grid, IconButton } from '@material-ui/core';
 import DialogContent from '@material-ui/core/DialogContent';
 import { Close } from '@material-ui/icons';
@@ -37,15 +38,15 @@ function Customer() {
       <td>{item.name}</td>
       <td>{item.phoneNumber}</td>
       <td>{item.email}</td>
-      <td className="customer__actions">
+      <td className="Customer__actions">
         <button
-          className="customer__edit-button"
+          className="Customer__edit-button"
           onClick={() => handleUpdateOpen(item)}
         >
           Edit
         </button>
         <i
-          className="far fa-trash-alt customer__delete-icon"
+          className="far fa-trash-alt Customer__delete-icon"
           onClick={() => {
             setConfirmDialog({
               isOpened: true,
@@ -60,6 +61,11 @@ function Customer() {
       </td>
     </tr>
   );
+
+  const handleAddOpen = () => {
+    setMode(MODE.CREATE);
+    setOpen(true);
+  };
 
   const handleUpdateOpen = (item) => {
     setCustomer(item);
