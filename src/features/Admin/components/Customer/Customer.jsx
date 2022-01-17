@@ -1,13 +1,12 @@
 import React from 'react';
 import './Customer.scss';
-
 import { Dialog, Grid, IconButton } from '@material-ui/core';
 import DialogContent from '@material-ui/core/DialogContent';
 import { Close } from '@material-ui/icons';
 import Table from 'components/Table/Table';
 import ConfirmationDialog from 'features/CRUD/components/ConfirmationDialog/ConfirmationDialog';
 import { useSnackbar } from 'notistack';
-import  { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import customerApi from 'api/customerApi';
 import UpdateCustomer from 'features/CRUD/components/UpdateCustomer/UpdateCustomer';
 
@@ -28,7 +27,7 @@ function Customer() {
   });
   const { enqueueSnackbar } = useSnackbar();
 
-  const CustomerHead = ['ID', 'Name', 'Phone Number','Email', 'Actions'];
+  const CustomerHead = ['ID', 'Name', 'Phone Number', 'Email', 'Actions'];
 
   const renderHead = (item, index) => <th key={index}>{item}</th>;
 
@@ -38,15 +37,15 @@ function Customer() {
       <td>{item.name}</td>
       <td>{item.phoneNumber}</td>
       <td>{item.email}</td>
-      <td className="Customer__actions">
+      <td className="customer__actions">
         <button
-          className="Customer__edit-button"
+          className="customer__edit-button"
           onClick={() => handleUpdateOpen(item)}
         >
           Edit
         </button>
         <i
-          className="far fa-trash-alt Customer__delete-icon"
+          className="far fa-trash-alt customer__delete-icon"
           onClick={() => {
             setConfirmDialog({
               isOpened: true,
@@ -61,11 +60,6 @@ function Customer() {
       </td>
     </tr>
   );
-
-  const handleAddOpen = () => {
-    setMode(MODE.CREATE);
-    setOpen(true);
-  };
 
   const handleUpdateOpen = (item) => {
     setCustomer(item);
@@ -115,7 +109,7 @@ function Customer() {
             id: x.id,
             name: x.name,
             phoneNumber: x.phoneNumber,
-            email: x.email
+            email: x.email,
           }))
         );
       } catch (error) {
@@ -137,7 +131,6 @@ function Customer() {
                 bodyData={CustomerList}
                 renderBody={(item, index) => renderBody(item, index)}
               />
-              
             </div>
           </div>
         </Grid>
@@ -152,7 +145,6 @@ function Customer() {
           <Close />
         </IconButton>
         <DialogContent>
-
           {mode === MODE.UPDATE && (
             <UpdateCustomer closeDialog={handleClose} Customer={Customer} />
           )}
