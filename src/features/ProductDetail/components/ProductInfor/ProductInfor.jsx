@@ -35,9 +35,10 @@ function ProductInfor(props) {
 
   const handleAddToCartForm = ({ quantity }) => {
     const action = addToCart({
-      id: product.id,
-      product,
+      productId: product.id,
       quantity,
+      product,
+      status: 0,
     });
     dispatch(action);
 
@@ -78,7 +79,9 @@ function ProductInfor(props) {
         </div>
         <div className={styles.ProductTableRow}>
           <span className={styles.ProductItem}>Số lượng có sẵn </span>
-          <span className={styles.ProductItem}>{product.unitInStock}</span>
+          <span className={styles.ProductItem}>
+            {product?.unitInStock || 'Hết hàng'}
+          </span>
         </div>
       </div>
       <div className={styles.ProductCartWapper}>

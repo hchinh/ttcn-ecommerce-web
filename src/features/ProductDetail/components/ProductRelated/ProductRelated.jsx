@@ -24,7 +24,7 @@ function ProductRelated(props) {
         <div className={styles.home__product}>
           <div className={styles.grid__row}>
             {products.map((item) => (
-              <div className={styles.grid__column24}>
+              <div className={styles.grid__column24} key={item.id}>
                 <Link
                   to={`/product/${item.id}`}
                   className={styles.home__productitems}
