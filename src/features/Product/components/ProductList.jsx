@@ -11,7 +11,7 @@ function ProductList({ data = [] }) {
       <div className={styles.home__product}>
         <div className={styles.grid__row}>
           {data.map((item) => (
-            <div className={styles.grid__column24}>
+            <div key={item.id} className={styles.grid__column24}>
               <Link
                 to={`/product/${item.id}`}
                 className={styles.home__productitems}

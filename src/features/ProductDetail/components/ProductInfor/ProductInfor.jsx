@@ -57,14 +57,11 @@ function ProductInfor(props) {
         </Alert>
       </Snackbar>
       <h4 className={styles.ProductName}>{product?.name}</h4>
-      <h5 className={styles.ProductBand}>
-        {/* <i class="fab fa-apple"></i> */}
-        {product?.brand}
-      </h5>
+      <h5 className={styles.ProductBand}>{product?.brand}</h5>
       <p className={styles.ProductDescription}>{product?.description}</p>
       <div className={styles.ProductTable}>
         <div className={styles.ProductTableRow}>
-          <span className={styles.ProductItem}>Brand</span>
+          <span className={styles.ProductItem}>Thương hiệu</span>
           <span className={styles.ProductItem}>{product?.brand}</span>
         </div>
         <div className={styles.ProductTableRow}>
@@ -72,12 +69,16 @@ function ProductInfor(props) {
           <span className={styles.ProductItem}>{product?.category.name}</span>
         </div>
         <div className={styles.ProductTableRow}>
-          <span className={styles.ProductItem}>Nước</span>
+          <span className={styles.ProductItem}>Nước sản xuất</span>
           <span className={styles.ProductItem}>USA</span>
         </div>
         <div className={styles.ProductTableRow}>
           <span className={styles.ProductItem}>Số lượng mua</span>
           <span className={styles.ProductItem}>23.000</span>
+        </div>
+        <div className={styles.ProductTableRow}>
+          <span className={styles.ProductItem}>Số lượng có sẵn </span>
+          <span className={styles.ProductItem}>{product.unitInStock}</span>
         </div>
       </div>
       <div className={styles.ProductCartWapper}>

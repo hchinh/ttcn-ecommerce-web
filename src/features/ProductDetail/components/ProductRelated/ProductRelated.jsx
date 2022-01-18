@@ -8,7 +8,7 @@ function ProductRelated(props) {
   const [products, setProducts] = useState([]);
   const filters = {
     limit: 5,
-    page: 1,
+    page: 0,
   };
   useEffect(() => {
     const paramsString = queryString.stringify(filters);
