@@ -1,6 +1,6 @@
 const StorageKeys = {
   USER: 'username',
-  TOKEN: 'access-token',
+  TOKEN: 'token',
   ID: 'adminId',
 };
 

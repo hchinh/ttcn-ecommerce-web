@@ -42,11 +42,10 @@ function NavBar(props) {
               <Link to="/profile">
                 <li className={styles.nav__menuitems}>Profile</li>
               </Link>
-              <Link to="/">
-                <li className={styles.nav__menuitems} onClick={handleLogout}>
-                  Logout
-                </li>
-              </Link>
+
+              <li className={styles.nav__menuitems} onClick={handleLogout}>
+                Logout
+              </li>
             </ul>
           </li>
         )}

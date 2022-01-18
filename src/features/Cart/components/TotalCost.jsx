@@ -5,7 +5,8 @@ import { formatPrice } from 'utils';
 import { cartTotalSelector } from '../selectors';
 import Confirm from '../../../components/Confirm';
 import s from './style.module.scss';
-import { removeAllCart } from '../cartSlice';
+import { useHistory } from 'react-router-dom';
+import StorageUser from 'constants/storage-user';
 
 TotalCost.propTypes = {};
 
@@ -41,32 +42,15 @@ const useStyles = makeStyles((theme) => ({
 function TotalCost() {
   const classes = useStyles();
   const cartTotal = useSelector(cartTotalSelector);
-  const dispatch = useDispatch();
-  const cartItems = useSelector((state) => state.cart.cartItems);
-  const [deleteAll, setDeleteAll] = useState(false);
+  const history = useHistory();
 
-  function showBox() {
-    // setDeleteAll(true);
-    // dispatch(removeAllCart());
-    const a = [];
-    cartItems.map((item) =>
-      a.push({
-        productId: item.productId,
-        status: item.status,
-        quantity: item.quantity,
-      })
-    );
-    console.log(a);
-    console.log(cartTotal);
-  }
-
-  // function closeBox() {
-  //   setDeleteAll(false);
-  // }
-
-  // function deleteAllCart() {
-  //   setDeleteAll(false);
-  // }
+  const handleRedirectCheckout = () => {
+    if (localStorage.getItem(StorageUser.ID)) {
+      history.push('/checkout');
+    } else {
+      history.push('/login');
+    }
+  };
 
   return (
     <Box>
@@ -97,7 +81,7 @@ function TotalCost() {
         </div>
       </Grid>
       <Button
-        onClick={() => showBox()}
+        onClick={handleRedirectCheckout}
         variant="contained"
         color="secondary"
         size="large"
@@ -105,11 +89,6 @@ function TotalCost() {
       >
         Thanh toán
       </Button>
-      {deleteAll && (
-        <div className={s.center}>
-          <Confirm />
-        </div>
-      )}
     </Box>
   );
 }
