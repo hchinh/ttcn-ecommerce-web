@@ -1,3 +1,4 @@
+import { feedbacks } from '@material-ui/icons';
 import SideBar from 'components/SideBar/SideBar';
 import TopBar from 'components/TopBar/TopBar';
 import StorageKeys from 'constants/storage-keys';
@@ -7,7 +8,7 @@ import Category from '../components/Category/Category';
 import Coupon from '../components/Coupon/Coupon';
 import Customer from '../components/Customer/Customer';
 import Dashboard from '../components/Dashboard/Dashboard';
-import Order from '../components/Order/Order';
+import Feedback from '../components/Feedback/Feedback';
 import Product from '../components/Product/Product';
 import Setting from '../components/Setting/Setting';
 import './Admin.scss';
@@ -45,18 +46,18 @@ function AdminPage(props) {
           <Route path="/admin/products">
             <Product />
           </Route>
-
           <Route path="/admin/coupons">
             <Coupon />
           </Route>
 
-          <Route path="/admin/orders">
-            <Order />
+          <Route path="/admin/feedbacks">
+            <Feedback />
           </Route>
 
           <Route path="/admin/settings">
             <Setting />
           </Route>
+          
         </Switch>
       </div>
     </div>
