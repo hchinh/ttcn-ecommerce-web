@@ -12,7 +12,6 @@ function NavBar() {
   const [navBar, setNavBar] = useState(false);
 
   const cartItemsCount = useSelector(cartItemsCountSelector);
-  const avatarUrl = useSelector((state) => state.admin.avatarUrl);
   const loggedInUser = useSelector((state) => state.admin.current);
   const isLoggedIn = !!loggedInUser.id;
 

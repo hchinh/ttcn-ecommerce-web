@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '14px',
     marginTop: '10px',
     paddingTop: theme.spacing(1.5),
-    paddingLeft: theme.spacing(2),
     marginBottom: 0,
 
     '&>li': {

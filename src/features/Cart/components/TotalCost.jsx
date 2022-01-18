@@ -1,14 +1,15 @@
 import { Box, Button, Grid, makeStyles } from '@material-ui/core';
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import StorageUser from 'constants/storage-user';
+import propTypes from 'prop-types';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { formatPrice } from 'utils';
 import { cartTotalSelector } from '../selectors';
-import Confirm from '../../../components/Confirm';
-import s from './style.module.scss';
-import { useHistory } from 'react-router-dom';
-import StorageUser from 'constants/storage-user';
 
-TotalCost.propTypes = {};
+TotalCost.propTypes = {
+  handleCheckout: propTypes.func.isRequired,
+};
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,14 +40,29 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function TotalCost() {
+function TotalCost({ handleCheckout }) {
   const classes = useStyles();
   const cartTotal = useSelector(cartTotalSelector);
+  const cartItems = useSelector((state) => state.cart.cartItems);
   const history = useHistory();
+
+  const customCartItemsField = cartItems.map((item) => ({
+    productId: item.productId,
+    quantity: item.quantity,
+    status: 0,
+  }));
+
+  const fieldValues = {
+    customerId: localStorage.getItem(StorageUser.ID),
+    totalCost: cartTotal,
+    cartItems: customCartItemsField,
+    address: 'Hoi An City',
+    note: 'test checkout',
+  };
 
   const handleRedirectCheckout = () => {
     if (localStorage.getItem(StorageUser.ID)) {
-      history.push('/checkout');
+      handleCheckout(fieldValues);
     } else {
       history.push('/login');
     }

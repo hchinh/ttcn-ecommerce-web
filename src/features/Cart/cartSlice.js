@@ -33,15 +33,12 @@ const cartSlice = createSlice({
       );
     },
 
-    // removeAllCart(state, action) {
-    //   const idUser = action.payload;
-    //   // find user then delete
-    //   state.cartItems = [];
-    // },
+    resetCart(state) {
+      state.cartItems = [];
+    },
   },
 });
 
 const { actions, reducer } = cartSlice;
-export const { addToCart, setQuantity, removeFromCart, removeAllCart } =
-  actions;
+export const { addToCart, setQuantity, removeFromCart, resetCart } = actions;
 export default reducer;

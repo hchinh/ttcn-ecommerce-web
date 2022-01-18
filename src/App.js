@@ -1,7 +1,6 @@
 import AdminFeature from 'features/Admin';
 import LoginPage from 'features/Auth/pages/LoginPage';
 import CartFeature from 'features/Cart';
-import CheckoutFeature from 'features/Checkout';
 import ProfileFeature from 'features/Profile';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
@@ -18,7 +17,6 @@ function App() {
         <Route path="/admin/login" component={LoginPage} />
         <Route path="/admin" component={AdminFeature} />
         <Route path="/profile" component={ProfileFeature} />
-        <Route path="/checkout" component={CheckoutFeature} />
         <Route path="/cart" component={CartFeature} />
         <Route path="/product/:id" exact component={ProductDetail} />
         <Route component={ErrorPage} />

@@ -7,7 +7,6 @@ import { logoutUser } from 'features/Auth/authSlice';
 function NavBar(props) {
   const dispatch = useDispatch();
   const cartItemsCount = useSelector(cartItemsCountSelector);
-  const avatarUrl = useSelector((state) => state.admin.avatarUrl);
   const loggedInUser = useSelector((state) => state.admin.current);
   const isLoggedIn = !!loggedInUser.id;
 

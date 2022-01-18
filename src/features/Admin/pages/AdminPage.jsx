@@ -1,4 +1,3 @@
-import { feedbacks } from '@material-ui/icons';
 import SideBar from 'components/SideBar/SideBar';
 import TopBar from 'components/TopBar/TopBar';
 import StorageKeys from 'constants/storage-keys';
@@ -57,7 +56,6 @@ function AdminPage(props) {
           <Route path="/admin/settings">
             <Setting />
           </Route>
-          
         </Switch>
       </div>
     </div>
