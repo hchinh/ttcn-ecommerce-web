@@ -19,7 +19,7 @@ function AdminPage(props) {
   const history = useHistory();
 
   useEffect(() => {
-    const token = localStorage.getItem(StorageKeys.TOKEN);
+    const token = localStorage.getItem(StorageKeys.ID);
     if (!token) {
       history.replace('/admin/login');
     }

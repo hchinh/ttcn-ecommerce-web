@@ -42,12 +42,22 @@ function TotalCost() {
   const classes = useStyles();
   const cartTotal = useSelector(cartTotalSelector);
   const dispatch = useDispatch();
-  // const cartItems = useSelector((state) => state.cart.cartItems);
+  const cartItems = useSelector((state) => state.cart.cartItems);
   const [deleteAll, setDeleteAll] = useState(false);
 
   function showBox() {
-    setDeleteAll(true);
-    dispatch(removeAllCart());
+    // setDeleteAll(true);
+    // dispatch(removeAllCart());
+    const a = [];
+    cartItems.map((item) =>
+      a.push({
+        productId: item.productId,
+        status: item.status,
+        quantity: item.quantity,
+      })
+    );
+    console.log(a);
+    console.log(cartTotal);
   }
 
   // function closeBox() {

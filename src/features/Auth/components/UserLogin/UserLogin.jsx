@@ -19,13 +19,12 @@ function Login(props) {
       const resultAction = await dispatch(action);
       unwrapResult(resultAction);
 
-      // enqueueSnackbar('Login successfully! 😍😎', {
-      //   variant: 'success',
-      //   anchorOrigin: { vertical: 'top', horizontal: 'right' },
-      // });
+      enqueueSnackbar('Login successfully! 😍😎', {
+        variant: 'success',
+        anchorOrigin: { vertical: 'top', horizontal: 'right' },
+      });
 
       history.push('/');
-      console.log(history);
     } catch (error) {
       console.log('Failed to login: ', error);
       enqueueSnackbar(`${error.message} 😥😭`, {
