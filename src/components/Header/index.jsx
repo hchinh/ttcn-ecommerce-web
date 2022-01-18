@@ -52,14 +52,7 @@ function NavBar() {
         )}
         {isLoggedIn && (
           <li className={styles.nav__itemsaccount}>
-            <img
-              src={
-                avatarUrl ||
-                'https://upload.wikimedia.org/wikipedia/vi/thumb/5/5c/Chelsea_crest.svg/1200px-Chelsea_crest.svg.png'
-              }
-              alt="Ảnh đại diện"
-              className={styles.img}
-            />
+            <img src="avatar.png" alt="Ảnh đại diện" className={styles.img} />
             <ul className={styles.nav__itemsmenu}>
               <Link to="/profile">
                 <li className={styles.nav__menuitems}>Profile</li>

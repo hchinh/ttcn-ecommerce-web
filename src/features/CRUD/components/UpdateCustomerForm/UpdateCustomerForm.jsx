@@ -63,6 +63,7 @@ function UpdateCustomerForm({ onSubmit, Customer }) {
       name: Customer.name,
       email: Customer.email,
       phoneNumber: Customer.phoneNumber,
+      address: Customer.address,
     },
     resolver: yupResolver(schema),
   });
@@ -87,8 +88,9 @@ function UpdateCustomerForm({ onSubmit, Customer }) {
 
       <form onSubmit={form.handleSubmit(handleUpdateCustomer)}>
         <InputField name="name" label="Name" form={form} />
-        <InputField name="email" label="email" form={form} />
-        <InputField name="phoneNumber" label="phoneNumber" form={form} />
+        <InputField name="email" label="Email" form={form} />
+        <InputField name="phoneNumber" label="PhoneNumber" form={form} />
+        <InputField name="address" label="Address" form={form} />
         <Button
           className={classes.submit}
           disabled={isSubmitting}

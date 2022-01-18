@@ -6,19 +6,17 @@ import StorageUser from 'constants/storage-user';
 import NavBar from 'components/Header';
 import './Profile.scss';
 import customerApi from 'api/customerApi';
+import GENDER_CONSTANTS from 'constants/gender';
+import { Dialog, DialogContent, IconButton } from '@material-ui/core';
+import { Close } from '@material-ui/icons';
+import UpdateCustomer from 'features/CRUD/components/UpdateCustomer/UpdateCustomer';
 
 function ProfileFeature(props) {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const history = useHistory();
 
   const [profile, setProfile] = useState();
-
-  useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem(StorageUser.ID);
@@ -33,12 +31,23 @@ function ProfileFeature(props) {
         const data = await customerApi.get(
           localStorage.getItem(StorageUser.ID)
         );
-        console.log(data);
+        setProfile(data);
+        setLoading(false);
       } catch (error) {
         console.log('Failed to fetch profile: ', error);
       }
     })();
   }, []);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (e, reason) => {
+    if (reason === 'backdropClick') return;
+
+    setOpen(false);
+  };
 
   return (
     <>
@@ -50,7 +59,38 @@ function ProfileFeature(props) {
       ) : (
         <>
           <NavBar />
+          <div className="profile_container">
+            <div className="profile_wrapper">
+              <div className="profile_title">Thông tin cá nhân</div>
+              <div className="profile_info">{`Họ tên: ${profile.name}`}</div>
+              <div className="profile_info">{`Số điện thoại: ${profile.phoneNumber}`}</div>
+              <div className="profile_info">{`Email: ${profile.email}`}</div>
+              <div className="profile_info">{`Địa chỉ: ${profile.address}`}</div>
+              <div className="profile_info">{`Giới tính: ${
+                GENDER_CONSTANTS.find((i) => i.value === profile.gender).text
+              }`}</div>
+              <div className="profile_edit" onClick={handleClickOpen}>
+                Chỉnh sửa
+              </div>
+            </div>
+            <div>
+              <img src="banner.png" alt="banner" className="profile_banner" />
+            </div>
+          </div>
           <Footer />
+          <Dialog
+            disableEscapeKeyDown
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="form-dialog-title"
+          >
+            <IconButton className="dialog__close-button" onClick={handleClose}>
+              <Close />
+            </IconButton>
+            <DialogContent>
+              <UpdateCustomer closeDialog={handleClose} Customer={profile} />
+            </DialogContent>
+          </Dialog>
         </>
       )}
     </>

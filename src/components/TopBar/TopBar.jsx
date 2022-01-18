@@ -43,33 +43,33 @@ function TopBar(props) {
   };
 
   return (
-    <div className='top-bar'>
-      <div className='top-bar__wrapper'>
-        <div className='top-bar__left'>
-          <Link to='/admin' className='top-bar__logo'>
+    <div className="top-bar">
+      <div className="top-bar__wrapper">
+        <div className="top-bar__left">
+          <Link to="/admin" className="top-bar__logo">
             <span>PickBazar</span>
           </Link>
         </div>
-        <div className='top-bar__right'>
-          <button className='top-bar__button' onClick={handleClickOpen}>
+        <div className="top-bar__right">
+          <button className="top-bar__button" onClick={handleClickOpen}>
             Add Products
           </button>
-          <div className='top-bar__icons'>
-            <i className='far fa-bell'></i>
-            <span className='top-bar__icon-badge'>1</span>
+          <div className="top-bar__icons">
+            <i className="far fa-bell"></i>
+            <span className="top-bar__icon-badge">1</span>
           </div>
 
           <img
-            className='top-bar__avatar'
-            src='https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1670746276469971&height=50&width=50&ext=1630640379&hash=AeQRqhF_z5JMdTp8T4Q'
-            alt='avatar'
+            className="top-bar__avatar"
+            src="avatar.png"
+            alt="avatar"
             onClick={handleUserClick}
           />
         </div>
       </div>
 
       <Menu
-        id='simple-menu'
+        id="simple-menu"
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
@@ -92,9 +92,9 @@ function TopBar(props) {
         disableEscapeKeyDown
         open={open}
         onClose={handleClose}
-        aria-labelledby='form-dialog-title'
+        aria-labelledby="form-dialog-title"
       >
-        <IconButton className='dialog__close-button' onClick={handleClose}>
+        <IconButton className="dialog__close-button" onClick={handleClose}>
           <Close />
         </IconButton>
         <DialogContent>
