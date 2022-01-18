@@ -37,7 +37,7 @@ function NavBar(props) {
         )}
         {isLoggedIn && (
           <li className={styles.nav__itemsaccount}>
-            <img src="avatar.png" alt="Ảnh đại diện" className={styles.img} />
+            <img src="/avatar.png" alt="Ảnh đại diện" className={styles.img} />
             <ul className={styles.nav__itemsmenu}>
               <Link to="/profile">
                 <li className={styles.nav__menuitems}>Profile</li>
