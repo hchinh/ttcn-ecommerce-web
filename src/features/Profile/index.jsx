@@ -21,7 +21,7 @@ function ProfileFeature(props) {
   }, []);
 
   useEffect(() => {
-    const token = localStorage.getItem(StorageUser.TOKEN);
+    const token = localStorage.getItem(StorageUser.ID);
     if (!token) {
       history.replace('/login');
     }
