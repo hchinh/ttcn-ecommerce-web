@@ -1,5 +1,6 @@
 import { Box, Button, Grid, makeStyles } from '@material-ui/core';
 import StorageUser from 'constants/storage-user';
+import { useSnackbar } from 'notistack';
 import propTypes from 'prop-types';
 import React from 'react';
 import { useSelector } from 'react-redux';
@@ -45,6 +46,7 @@ function TotalCost({ handleCheckout }) {
   const cartTotal = useSelector(cartTotalSelector);
   const cartItems = useSelector((state) => state.cart.cartItems);
   const history = useHistory();
+  const { enqueueSnackbar } = useSnackbar();
 
   const customCartItemsField = cartItems.map((item) => ({
     productId: item.productId,
@@ -61,11 +63,26 @@ function TotalCost({ handleCheckout }) {
   };
 
   const handleRedirectCheckout = () => {
-    if (localStorage.getItem(StorageUser.ID)) {
-      handleCheckout(fieldValues);
-    } else {
+    if (!localStorage.getItem(StorageUser.ID)) {
       history.push('/login');
+      return;
     }
+
+    if (cartItems.length === 0) {
+      enqueueSnackbar(
+        'Vui lòng thêm ít nhất một sản phẩm vào giỏ hàng trước khi thanh toán',
+        {
+          variant: 'warning',
+          anchorOrigin: {
+            horizontal: 'left',
+            vertical: 'bottom',
+          },
+        }
+      );
+      return;
+    }
+
+    handleCheckout(fieldValues);
   };
 
   return (
