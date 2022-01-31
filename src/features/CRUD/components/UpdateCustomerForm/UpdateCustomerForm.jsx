@@ -1,6 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Avatar, Button, LinearProgress, makeStyles } from '@material-ui/core';
 import { LockOutlined } from '@material-ui/icons';
+import GenderSelectField from 'components/form-controls/GenderSelectField';
 import InputField from 'components/form-controls/InputField';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -51,9 +52,20 @@ function UpdateCustomerForm({ onSubmit, Customer }) {
   const classes = useStyles();
 
   const schema = yup.object().shape({
-    name: yup.string().required('Please enter name.'),
-
-    email: yup.string().required('Please enter email.'),
+    name: yup
+      .string()
+      .required('Please enter your full name.')
+      .test(
+        'should has at least two words',
+        'Please enter at least two words.',
+        (value) => {
+          return value.split(' ').length >= 2;
+        }
+      ),
+    email: yup
+      .string()
+      .required('Please enter your email.')
+      .email('Please enter a valid email address.'),
 
     phoneNumber: yup.string().required('please enter phone number'),
   });
@@ -64,6 +76,7 @@ function UpdateCustomerForm({ onSubmit, Customer }) {
       email: Customer.email,
       phoneNumber: Customer.phoneNumber,
       address: Customer.address,
+      gender: Customer.gender,
     },
     resolver: yupResolver(schema),
   });
@@ -91,6 +104,7 @@ function UpdateCustomerForm({ onSubmit, Customer }) {
         <InputField name="email" label="Email" form={form} />
         <InputField name="phoneNumber" label="PhoneNumber" form={form} />
         <InputField name="address" label="Address" form={form} />
+        <GenderSelectField name="gender" label="Gender" form={form} />
         <Button
           className={classes.submit}
           disabled={isSubmitting}
