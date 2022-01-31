@@ -114,7 +114,9 @@ function Employee() {
       try {
         const list = await employeeApi.getAll();
         setEmployeeList(
-          list.map((x) => ({
+          list
+          .filter(x => x.enabled === 1)
+          .map((x) => ({
             id: x.id,
             name: x.name,
             phoneNumber: x.phoneNumber,
