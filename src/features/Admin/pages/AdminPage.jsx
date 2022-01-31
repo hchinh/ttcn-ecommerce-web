@@ -7,9 +7,9 @@ import Category from '../components/Category/Category';
 import Coupon from '../components/Coupon/Coupon';
 import Customer from '../components/Customer/Customer';
 import Dashboard from '../components/Dashboard/Dashboard';
+import Employee from '../components/employee/employee';
 import Order from '../components/Order/Order';
 import Product from '../components/Product/Product';
-import Setting from '../components/Setting/Setting';
 import './Admin.scss';
 
 AdminPage.propTypes = {};
@@ -54,8 +54,8 @@ function AdminPage(props) {
             <Order />
           </Route>
 
-          <Route path="/admin/settings">
-            <Setting />
+          <Route path="/admin/employees">
+            <Employee />
           </Route>
         </Switch>
       </div>
