@@ -1,14 +1,11 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, makeStyles } from '@material-ui/core';
+import { Box, Button, makeStyles } from '@material-ui/core';
 import InputField from 'components/form-controls/InputField';
 import PasswordField from 'components/form-controls/PasswordField';
-// import StorageUser from 'constants/storage-user';
-// import { setAvatar } from 'features/Auth/authSlice';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-// import { useDispatch } from 'react-redux';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import * as yup from 'yup';
 import styles from './UserLoginForm.module.css';
 UserLoginForm.propTypes = {
@@ -36,8 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 function UserLoginForm({ onSubmit = null }) {
   const classes = useStyles();
-  // const history = useHistory();
-  // const dispatch = useDispatch();
+  const history = useHistory();
   const schema = yup.object().shape({
     userName: yup.string().required('Please enter your username.'),
     password: yup.string().required('Please enter your password.'),
@@ -57,17 +53,6 @@ function UserLoginForm({ onSubmit = null }) {
     }
   };
 
-  // const responseFacebook = (response) => {
-  //   if (response.status !== 'unknown') {
-  //     dispatch(setAvatar(response.picture.data.url));
-
-  //     localStorage.setItem(StorageUser.TOKEN, response.accessToken);
-  //     localStorage.setItem(StorageUser.USER, response.name);
-
-  //     history.push('/');
-  //   }
-  // };
-
   const { isSubmitting } = form.formState;
   return (
     <div className={styles.loginForm}>
@@ -76,7 +61,7 @@ function UserLoginForm({ onSubmit = null }) {
         onSubmit={form.handleSubmit(handleSubmit)}
       >
         <div className={styles.form_inner}>
-          <h2 className={styles.title}>Login</h2>
+          <h2 className={styles.title}>Sign In</h2>
           <InputField name="userName" label="Email" form={form} />
           <PasswordField name="password" label="Password" form={form} />
           <Button
@@ -90,6 +75,11 @@ function UserLoginForm({ onSubmit = null }) {
           >
             Sign In
           </Button>
+          <Box textAlign="center" mt={2}>
+            <Button color="primary" onClick={() => history.push('/register')}>
+              Don't have an account. Register here
+            </Button>
+          </Box>
         </div>
       </form>
     </div>

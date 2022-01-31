@@ -1,15 +1,15 @@
 import React from 'react';
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
-import Login from '../components/UserLogin/UserLogin';
+import Register from '../components/Register/Register';
 
-function UserLoginPage() {
+function RegisterPage() {
   const match = useRouteMatch();
   return (
     <div>
       <Switch>
-        <Route path={match.url} component={Login} />
+        <Route path={match.url} component={Register} />
       </Switch>
     </div>
   );
 }
-export default UserLoginPage;
+export default RegisterPage;

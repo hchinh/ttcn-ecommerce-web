@@ -4,11 +4,9 @@ import { useSnackbar } from 'notistack';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import UserLoginForm from '../UserLoginForm/UserLoginForm';
+import RegisterForm from '../RegisterForm/RegisterForm';
 
-Login.propTypes = {};
-
-function Login(props) {
+function Register() {
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
   const history = useHistory();
@@ -33,7 +31,7 @@ function Login(props) {
       });
     }
   };
-  return <UserLoginForm onSubmit={handleSubmit} />;
+  return <RegisterForm onSubmit={handleSubmit} />;
 }
 
-export default Login;
+export default Register;
