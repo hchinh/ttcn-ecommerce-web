@@ -36,13 +36,14 @@ const useStyles = makeStyles((theme) => ({
 function RegisterForm({ onSubmit = null }) {
   const classes = useStyles();
   const history = useHistory();
+
   const schema = yup.object().shape({
     userName: yup.string().required('Please enter your username.'),
     password: yup
       .string()
       .required('Please enter your password.')
       .min(6, 'Please enter at least 6 characters.'),
-    fullName: yup
+    name: yup
       .string()
       .required('Please enter your full name.')
       .test(

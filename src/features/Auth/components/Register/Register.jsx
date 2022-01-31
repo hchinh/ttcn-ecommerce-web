@@ -1,5 +1,5 @@
 import { unwrapResult } from '@reduxjs/toolkit';
-import { loginUser } from 'features/Auth/authSlice';
+import { register } from 'features/Auth/authSlice';
 import { useSnackbar } from 'notistack';
 import React from 'react';
 import { useDispatch } from 'react-redux';
@@ -13,18 +13,18 @@ function Register() {
 
   const handleSubmit = async (values) => {
     try {
-      const action = loginUser(values);
+      const action = register(values);
       const resultAction = await dispatch(action);
       unwrapResult(resultAction);
 
-      enqueueSnackbar('Login successfully! 😍😎', {
+      enqueueSnackbar('Register successfully! 😍😎', {
         variant: 'success',
         anchorOrigin: { vertical: 'top', horizontal: 'right' },
       });
 
-      history.push('/');
+      history.push('/login');
     } catch (error) {
-      console.log('Failed to login: ', error);
+      console.log('Failed to register ', error);
       enqueueSnackbar(`${error.message} 😥😭`, {
         variant: 'error',
         anchorOrigin: { vertical: 'top', horizontal: 'right' },

@@ -31,6 +31,10 @@ export const loginUser = createAsyncThunk('/login', async (payload) => {
   };
 });
 
+export const register = createAsyncThunk('/register', async (payload) => {
+  await userApi.register(payload);
+});
+
 const authSlice = createSlice({
   name: 'admin',
   initialState: {
