@@ -1,16 +1,14 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Avatar, Button, LinearProgress, makeStyles } from '@material-ui/core';
 import { LockOutlined } from '@material-ui/icons';
-import GenderSelectField from 'components/form-controls/GenderSelectField';
 import InputField from 'components/form-controls/InputField';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-UpdateCustomerForm.propTypes = {
+AddFeedbackForm.propTypes = {
   onSubmit: PropTypes.func,
-  Customer: PropTypes.object,
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -48,40 +46,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function UpdateCustomerForm({ onSubmit, Customer }) {
+function AddFeedbackForm({ onSubmit }) {
   const classes = useStyles();
-
   const schema = yup.object().shape({
-    name: yup
-      .string()
-      .required('Please enter your full name.')
-      .test(
-        'should has at least two words',
-        'Please enter at least two words.',
-        (value) => {
-          return value.split(' ').length >= 2;
-        }
-      ),
-    email: yup
-      .string()
-      .required('Please enter your email.')
-      .email('Please enter a valid email address.'),
+    customerId: yup.string().required('Please enter customerId.'),
+    productId: yup.string().required('Please enter productId.'),
 
-    phoneNumber: yup.string().required('please enter phone number'),
+    rating: yup
+      .string()
+      .required('Please enter rating of Feedback .'),
   });
 
   const form = useForm({
     defaultValues: {
-      name: Customer.name,
-      email: Customer.email,
-      phoneNumber: Customer.phoneNumber,
-      address: Customer.address,
-      gender: Customer.gender,
+      customerId: '',
+      productId: '',
+      rating: 0,
     },
     resolver: yupResolver(schema),
   });
 
-  const handleUpdateCustomer = async (values) => {
+  const handleAddFeedback = async (values) => {
     if (onSubmit) {
       await onSubmit(values);
     }
@@ -97,28 +82,25 @@ function UpdateCustomerForm({ onSubmit, Customer }) {
         <LockOutlined />
       </Avatar>
 
-      <h3 className={classes.title}>Update Customer</h3>
+      <h3 className={classes.title}>Add New Feedback</h3>
 
-      <form onSubmit={form.handleSubmit(handleUpdateCustomer)}>
-        <InputField name="name" label="Name" form={form} />
-        <InputField name="email" label="Email" form={form} />
-        <InputField name="phoneNumber" label="PhoneNumber" form={form} />
-        <InputField name="address" label="Address" form={form} />
-        <GenderSelectField name="gender" label="Gender" form={form} />
+      <form onSubmit={form.handleSubmit(handleAddFeedback)}>
+        <InputField name="customerId" label="customerId" form={form} />
+        <InputField name="productId" label="productId" form={form} />
+        <InputField name="rating" label="rating" form={form} />
         <Button
           className={classes.submit}
           disabled={isSubmitting}
           type="submit"
           variant="contained"
-          color="primary"
-          size="large"
           fullWidth
+          size="large"
         >
-          Update Customer
+          Create Feedback
         </Button>
       </form>
     </div>
   );
 }
 
-export default UpdateCustomerForm;
+export default AddFeedbackForm;

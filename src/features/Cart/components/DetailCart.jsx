@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '14px',
     marginTop: '10px',
     paddingTop: theme.spacing(1.5),
-    paddingLeft: theme.spacing(2),
     marginBottom: 0,
 
     '&>li': {
@@ -81,7 +80,7 @@ function DetailCart({ onRemove = null, onChange = null }) {
       <Paper elevation={0}>
         <ul className={classes.root}>
           {cartItems.map((item) => (
-            <li key={item.id}>
+            <li key={item.productId}>
               <Grid container>
                 <Grid item lg={5} className={classes.thumbnail}>
                   <img
@@ -111,7 +110,7 @@ function DetailCart({ onRemove = null, onChange = null }) {
                     : formatPrice(0)}
                 </Grid>
                 <Grid item lg={1} className={classes.center}>
-                  <IconButton onClick={() => handleRemoveItem(item.id)}>
+                  <IconButton onClick={() => handleRemoveItem(item.productId)}>
                     <DeleteOutlined />
                   </IconButton>
                 </Grid>

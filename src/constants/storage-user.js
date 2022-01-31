@@ -1,6 +1,7 @@
 const StorageUser = {
-  USER: 'user-infor',
+  USER: 'username',
   TOKEN: 'token',
+  ID: 'userId',
 };
 
 export default StorageUser;

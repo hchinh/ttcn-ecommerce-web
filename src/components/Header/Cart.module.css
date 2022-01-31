@@ -113,5 +113,17 @@
   background-color: #f8f8f8;
   cursor: pointer;
 }
+.nav__login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+}
 
+.nav__login a {
+  color: #33cccc;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
 /* /* Reponsive * */

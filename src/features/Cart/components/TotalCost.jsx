@@ -1,13 +1,16 @@
 import { Box, Button, Grid, makeStyles } from '@material-ui/core';
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import StorageUser from 'constants/storage-user';
+import { useSnackbar } from 'notistack';
+import propTypes from 'prop-types';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { formatPrice } from 'utils';
 import { cartTotalSelector } from '../selectors';
-import Confirm from '../../../components/Confirm';
-import s from './style.module.scss';
-import { removeAllCart } from '../cartSlice';
 
-TotalCost.propTypes = {};
+TotalCost.propTypes = {
+  handleCheckout: propTypes.func.isRequired,
+};
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,25 +41,49 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function TotalCost() {
+function TotalCost({ handleCheckout }) {
   const classes = useStyles();
   const cartTotal = useSelector(cartTotalSelector);
-  const dispatch = useDispatch();
-  // const cartItems = useSelector((state) => state.cart.cartItems);
-  const [deleteAll, setDeleteAll] = useState(false);
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const history = useHistory();
+  const { enqueueSnackbar } = useSnackbar();
 
-  function showBox() {
-    setDeleteAll(true);
-    dispatch(removeAllCart());
-  }
+  const customCartItemsField = cartItems.map((item) => ({
+    productId: item.productId,
+    quantity: item.quantity,
+    status: 0,
+  }));
 
-  // function closeBox() {
-  //   setDeleteAll(false);
-  // }
+  const fieldValues = {
+    customerId: localStorage.getItem(StorageUser.ID),
+    totalCost: cartTotal,
+    cartItems: customCartItemsField,
+    address: 'Hoi An City',
+    note: 'test checkout',
+  };
 
-  // function deleteAllCart() {
-  //   setDeleteAll(false);
-  // }
+  const handleRedirectCheckout = () => {
+    if (!localStorage.getItem(StorageUser.ID)) {
+      history.push('/login');
+      return;
+    }
+
+    if (cartItems.length === 0) {
+      enqueueSnackbar(
+        'Vui lòng thêm ít nhất một sản phẩm vào giỏ hàng trước khi thanh toán',
+        {
+          variant: 'warning',
+          anchorOrigin: {
+            horizontal: 'left',
+            vertical: 'bottom',
+          },
+        }
+      );
+      return;
+    }
+
+    handleCheckout(fieldValues);
+  };
 
   return (
     <Box>
@@ -87,7 +114,7 @@ function TotalCost() {
         </div>
       </Grid>
       <Button
-        onClick={() => showBox()}
+        onClick={handleRedirectCheckout}
         variant="contained"
         color="secondary"
         size="large"
@@ -95,11 +122,6 @@ function TotalCost() {
       >
         Thanh toán
       </Button>
-      {deleteAll && (
-        <div className={s.center}>
-          <Confirm />
-        </div>
-      )}
     </Box>
   );
 }

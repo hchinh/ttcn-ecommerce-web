@@ -1,18 +1,18 @@
 import axiosClient from './axiosClient';
 
-const customerApi = {
+const feedbackApi = {
   getAll(params) {
-    const url = '/customers';
+    const url = '/feedbacks';
     return axiosClient.get(url, { params });
   },
 
   get(id) {
-    const url = `/customers/${id}`;
+    const url = `/feedbacks/${id}`;
     return axiosClient.get(url);
   },
 
   add(data) {
-    const url = '/customers';
+    const url = '/feedbacks';
     const token = {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -22,7 +22,7 @@ const customerApi = {
   },
 
   update(data) {
-    const url = `/customers/${data.id}`;
+    const url = `/feedbacks/${data.id}`;
     const token = {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -32,7 +32,7 @@ const customerApi = {
   },
 
   remove(id) {
-    const url = `/customers/${id}`;
+    const url = `/feedbacks/${id}`;
     const token = {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -42,4 +42,4 @@ const customerApi = {
   },
 };
 
-export default customerApi;
+export default feedbackApi;

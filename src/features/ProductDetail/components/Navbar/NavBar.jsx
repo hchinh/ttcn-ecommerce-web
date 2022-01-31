@@ -1,10 +1,19 @@
 import React from 'react';
 import styles from './NavBar.module.css';
-import { Link, useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { cartItemsCountSelector } from 'features/Cart/selectors';
+import { logoutUser } from 'features/Auth/authSlice';
 function NavBar(props) {
+  const dispatch = useDispatch();
   const cartItemsCount = useSelector(cartItemsCountSelector);
+  const loggedInUser = useSelector((state) => state.admin.current);
+  const isLoggedIn = !!loggedInUser.id;
+
+  const handleLogout = () => {
+    const action = logoutUser();
+    dispatch(action);
+  };
 
   return (
     <div className={styles.navBar}>
@@ -20,21 +29,25 @@ function NavBar(props) {
             </div>
           </div>
         </Link>
-        <li className={styles.nav__itemsaccount}>
-          <img
-            src="https://upload.wikimedia.org/wikipedia/vi/thumb/5/5c/Chelsea_crest.svg/1200px-Chelsea_crest.svg.png"
-            alt=""
-            className={styles.img}
-          />
-          <ul className={styles.nav__itemsmenu}>
-            <Link to="/profile">
-              <li className={styles.nav__menuitems}>Profile</li>
-            </Link>
-            <Link to="/login">
-              <li className={styles.nav__menuitems}>Logout</li>
-            </Link>
-          </ul>
-        </li>
+        {!isLoggedIn && (
+          <div className={styles.nav__login}>
+            <Link to="/login">Login</Link>
+          </div>
+        )}
+        {isLoggedIn && (
+          <li className={styles.nav__itemsaccount}>
+            <img src="/avatar.png" alt="Ảnh đại diện" className={styles.img} />
+            <ul className={styles.nav__itemsmenu}>
+              <Link to="/profile">
+                <li className={styles.nav__menuitems}>Profile</li>
+              </Link>
+
+              <li className={styles.nav__menuitems} onClick={handleLogout}>
+                Logout
+              </li>
+            </ul>
+          </li>
+        )}
       </div>
     </div>
   );

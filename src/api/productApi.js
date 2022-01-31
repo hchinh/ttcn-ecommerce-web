@@ -51,7 +51,7 @@ const productApi = {
     const url = '/products';
     const token = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('access-token')}`,
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     };
     return axiosClient.post(url, data, token);
@@ -61,7 +61,7 @@ const productApi = {
     const url = `/products/${data.id}`;
     const token = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('access-token')}`,
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     };
     return axiosClient.put(url, data, token);
@@ -71,7 +71,7 @@ const productApi = {
     const url = `/products/${id}`;
     const token = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('access-token')}`,
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     };
     return axiosClient.delete(url, token);

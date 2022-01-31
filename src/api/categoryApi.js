@@ -15,7 +15,7 @@ const categoryApi = {
     const url = '/categories';
     const token = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('access-token')}`,
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     };
     return axiosClient.post(url, data, token);
@@ -25,7 +25,7 @@ const categoryApi = {
     const url = `/categories/${data.id}`;
     const token = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('access-token')}`,
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     };
     return axiosClient.put(url, data, token);
@@ -35,7 +35,7 @@ const categoryApi = {
     const url = `/categories/${id}`;
     const token = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('access-token')}`,
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     };
     return axiosClient.delete(url, token);

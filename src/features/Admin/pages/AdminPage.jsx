@@ -9,6 +9,7 @@ import Customer from '../components/Customer/Customer';
 import Dashboard from '../components/Dashboard/Dashboard';
 import Employee from '../components/employee/employee';
 import Order from '../components/Order/Order';
+import Feedback from '../components/Feedback/Feedback';
 import Product from '../components/Product/Product';
 import './Admin.scss';
 
@@ -18,7 +19,7 @@ function AdminPage(props) {
   const history = useHistory();
 
   useEffect(() => {
-    const token = localStorage.getItem(StorageKeys.TOKEN);
+    const token = localStorage.getItem(StorageKeys.ID);
     if (!token) {
       history.replace('/admin/login');
     }
@@ -45,13 +46,12 @@ function AdminPage(props) {
           <Route path="/admin/products">
             <Product />
           </Route>
-
           <Route path="/admin/coupons">
             <Coupon />
           </Route>
 
-          <Route path="/admin/orders">
-            <Order />
+          <Route path="/admin/feedbacks">
+            <Feedback />
           </Route>
 
           <Route path="/admin/employees">

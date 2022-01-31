@@ -8,25 +8,12 @@ import Footer from 'features/Product/components/Footer/Footer';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-// import { useHistory } from 'react-router-dom';
-// import StorageUser from 'constants/storage-user';
+
 function ProductDetail(props) {
-  const [loading, setLoading] = useState(false);
-  // const history = useHistory();
-  useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
+  const [loading, setLoading] = useState(true);
+
   const [product, setProduct] = useState(null);
   const { id } = useParams();
-  //   useEffect(() => {
-  //     const token = localStorage.getItem(StorageUser.TOKEN);
-  //     if (!token) {
-  //       history.replace('/login1');
-  //     }
-  //   });
 
   useEffect(() => {
     if (id) {
@@ -34,18 +21,14 @@ function ProductDetail(props) {
       axios.get(getApi).then((response) => {
         setProduct(response.data);
       });
+      setLoading(false);
     }
   }, [id]);
   return (
     <React.Fragment>
       {loading ? (
         <div className={styles.sweet_loading}>
-          <ClipLoader
-            color={'#F5A623'}
-            loading={loading}
-            // css={override}
-            size={40}
-          />
+          <ClipLoader color={'#F5A623'} loading={loading} size={40} />
           <span>Please Wait</span>
         </div>
       ) : (

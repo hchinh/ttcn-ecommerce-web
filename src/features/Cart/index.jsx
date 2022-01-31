@@ -8,12 +8,14 @@ import {
 } from '@material-ui/core';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { removeFromCart, setQuantity } from './cartSlice';
+import { removeFromCart, setQuantity, resetCart } from './cartSlice';
 import DetailCart from './components/DetailCart';
 import ProductTotal from './components/ProductTotal';
 import TotalCost from './components/TotalCost';
 import NavBar from '../ProductDetail/components/Navbar/NavBar';
 import styles from './index.module.css';
+import cartApi from 'api/cartApi';
+import { useSnackbar } from 'notistack';
 CartFeature.propTypes = {};
 
 const useStyles = makeStyles((theme) => ({
@@ -32,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function CartFeature() {
+  const { enqueueSnackbar } = useSnackbar();
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -45,14 +48,38 @@ function CartFeature() {
     dispatch(action);
   };
 
+  const handleCheckout = async (value) => {
+    try {
+      await cartApi.create(value);
+
+      dispatch(resetCart());
+
+      enqueueSnackbar('Thanh toán thành công!', {
+        variant: 'success',
+        anchorOrigin: {
+          horizontal: 'left',
+          vertical: 'bottom',
+        },
+      });
+    } catch (error) {
+      enqueueSnackbar(error.message, {
+        variant: 'error',
+        anchorOrigin: {
+          horizontal: 'left',
+          vertical: 'bottom',
+        },
+      });
+    }
+  };
+
   return (
     <React.Fragment>
       <NavBar />
       <Box className={styles.box}>
         <Container>
           <Typography
-            component='h1'
-            variant='h5'
+            component="h1"
+            variant="h5"
             style={{ marginBottom: '12px' }}
           >
             GIỎ HÀNG
@@ -67,7 +94,7 @@ function CartFeature() {
             </Grid>
             <Paper elevation={0}>
               <Grid item className={classes.right}>
-                <TotalCost />
+                <TotalCost handleCheckout={handleCheckout} />
               </Grid>
             </Paper>
           </Grid>
