@@ -1,5 +1,6 @@
 import customerApi from 'api/customerApi';
 import employeeApi from 'api/employeeApi';
+import processOrderApi from 'api/processOrderApi';
 import UpdateEmployeeForm from 'features/CRUD/UpdateEmployeeForm/UpdateEmployeeForm';
 import { useSnackbar } from 'notistack';
 import PropTypes from 'prop-types';
@@ -10,27 +11,29 @@ import UpdateProcessOrderForm from '../UpdateProcessOrderForm/UpdateProcessOrder
 
 UpdateProcessOrder.propTypes = {
   closeDialog: PropTypes.func,
-  Employee: PropTypes.object,
+  processOrder: PropTypes.object,
 };
 
-function UpdateProcessOrder({ closeDialog, Employee }) {
+function UpdateProcessOrder({ closeDialog, processOrder }) {
   const { enqueueSnackbar } = useSnackbar();
 
   const handleUpdate = async (values) => {
     try {
       const formValues = {
-        ...values,
-        roleCode: "ROLE_ADMIN",
-        password: ""
+        id: values.id,
+       status: values.status,
+        productId: 2,
+        cartId: 1,
+       quantity: values.quantity
       };
 
-      await employeeApi.update(formValues);
+      await processOrderApi.update(formValues);
 
       if (closeDialog) {
         closeDialog();
       }
 
-      enqueueSnackbar('Update Employee successfully.', {
+      enqueueSnackbar('Update processOrder successfully.', {
         variant: 'success',
         anchorOrigin: {
           horizontal: 'right',
@@ -51,7 +54,7 @@ function UpdateProcessOrder({ closeDialog, Employee }) {
 
   return (
     <div>
-      <UpdateProcessOrderForm onSubmit={handleUpdate} Employee={Employee} />
+      <UpdateProcessOrderForm onSubmit={handleUpdate} processOrder={processOrder} />
     </div>
   );
 }

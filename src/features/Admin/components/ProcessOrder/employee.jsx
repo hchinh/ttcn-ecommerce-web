@@ -21,7 +21,7 @@ const MODE = {
   UPDATE: 'update',
 };
 
-function Employee() {
+function ProcessOrder() {
   const [EmployeeList, setEmployeeList] = useState();
   const [open, setOpen] = useState(false);
   const [mode, setMode] = useState(MODE.CREATE);
@@ -184,4 +184,4 @@ function Employee() {
   );
 }
 
-export default Employee;
+export default ProcessOrder;

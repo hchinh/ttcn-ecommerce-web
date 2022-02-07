@@ -12,6 +12,7 @@ import Order from '../components/Order/Order';
 import Feedback from '../components/Feedback/Feedback';
 import Product from '../components/Product/Product';
 import './Admin.scss';
+import ProcessOrder from '../components/ProcessOrder/employee';
 
 AdminPage.propTypes = {};
 
@@ -58,7 +59,7 @@ function AdminPage(props) {
             <Employee />
           </Route>
           <Route path="/admin/processOrders">
-            <Employee />
+            <ProcessOrder />
           </Route>
         </Switch>
       </div>

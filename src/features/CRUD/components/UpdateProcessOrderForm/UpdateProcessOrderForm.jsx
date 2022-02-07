@@ -2,6 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Avatar, Button, LinearProgress, makeStyles } from '@material-ui/core';
 import { LockOutlined } from '@material-ui/icons';
 import InputField from 'components/form-controls/InputField';
+import SelectField from 'components/form-controls/SelectFieldProcessOrder';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -9,7 +10,7 @@ import * as yup from 'yup';
 
 UpdateProcessOrderForm.propTypes = {
   onSubmit: PropTypes.func,
-  Employee: PropTypes.object,
+  processOrder: PropTypes.object,
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -47,31 +48,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function UpdateProcessOrderForm({ onSubmit, Employee }) {
+function UpdateProcessOrderForm({ onSubmit, processOrder }) {
   const classes = useStyles();
 
-  const schema = yup.object().shape({
-    name: yup.string().required('Please enter name.'),
 
-    email: yup.string().required('Please enter email.'),
-
-    phoneNumber: yup.string().required('please enter phone number'),
-
-    userName: yup.string().required ('please enter userName')
-  });
 
   const form = useForm({
     defaultValues: {
-      id: Employee.id,
-      name: Employee.name,
-      email: Employee.email,
-      phoneNumber: Employee.phoneNumber,
-      userName: Employee.userName,
+      id: processOrder.id,
+      status: '',
+      quantity: processOrder.quantity
     },
-    resolver: yupResolver(schema),
+    
   });
 
-  const handleUpdateEmployee = async (values) => {
+  const handleUpdateprocessOrder = async (values) => {
     if (onSubmit) {
       await onSubmit(values);
     }
@@ -87,13 +78,11 @@ function UpdateProcessOrderForm({ onSubmit, Employee }) {
         <LockOutlined />
       </Avatar>
 
-      <h3 className={classes.title}>Update Employee</h3>
+      <h3 className={classes.title}>Update processOrder</h3>
 
-      <form onSubmit={form.handleSubmit(handleUpdateEmployee)}>
-        <InputField name="name" label="Name" form={form} />
-        <InputField name="email" label="email" form={form} />
-        <InputField name="phoneNumber" label="phoneNumber" form={form} />
-        <InputField name="userName" label="userName" form={form} />
+      <form onSubmit={form.handleSubmit(handleUpdateprocessOrder)}>
+      <SelectField name="status" label="status" form={form} />
+        
 
 
         <Button
@@ -105,7 +94,7 @@ function UpdateProcessOrderForm({ onSubmit, Employee }) {
           size="large"
           fullWidth
         >
-          Update Employee
+          Update processOrder
         </Button>
       </form>
     </div>
