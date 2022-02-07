@@ -28,5 +28,11 @@
     "name": "Employees",
     "route": "/admin/employees",
     "icon": "fas fa-cog"
+  },
+
+  {
+    "name": "ProcessOrders",
+    "route": "/admin/processOrders",
+    "icon": "fa fa-sort"
   }
 ]

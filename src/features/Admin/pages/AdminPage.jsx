@@ -57,6 +57,9 @@ function AdminPage(props) {
           <Route path="/admin/employees">
             <Employee />
           </Route>
+          <Route path="/admin/processOrders">
+            <Employee />
+          </Route>
         </Switch>
       </div>
     </div>
