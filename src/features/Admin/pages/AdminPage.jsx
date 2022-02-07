@@ -7,7 +7,7 @@ import Category from '../components/Category/Category';
 import Coupon from '../components/Coupon/Coupon';
 import Customer from '../components/Customer/Customer';
 import Dashboard from '../components/Dashboard/Dashboard';
-import Employee from '../components/employee/employee';
+import Employee from '../components/ProcessOrder/employee';
 import Order from '../components/Order/Order';
 import Feedback from '../components/Feedback/Feedback';
 import Product from '../components/Product/Product';
