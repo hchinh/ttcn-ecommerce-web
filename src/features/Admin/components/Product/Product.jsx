@@ -78,7 +78,7 @@ function Product(props) {
         <Pagination
           color="primary"
           count={Math.ceil(pagination.total / pagination.limit)}
-          page={pagination.page}
+          page={pagination.page + 1}
           onChange={handlePageChange}
         />
       </div>

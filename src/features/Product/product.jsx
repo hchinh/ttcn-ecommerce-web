@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import styles from './product.module.css';
-// import SliderBar from './components/Nav'
 import ProductList from './components/ProductList';
 import NavBar from 'components/Header';
 import Slider from './components/Slider/Slider';
@@ -13,8 +12,7 @@ import queryString from 'query-string';
 import ProductFilters from './components/ProductFilters/ProductFilter';
 import ClipLoader from 'react-spinners/ClipLoader';
 import ProductSkeletonList from './ProductSkeletonList';
-// import StorageUser from 'constants/storage-user';
-function Product(props) {
+function Product() {
   const location = useLocation();
   const history = useHistory();
   const [productList, setProductList] = useState();
@@ -23,12 +21,6 @@ function Product(props) {
     limit: 12,
     total: 12,
   });
-  // useEffect(() => {
-  //   const token = localStorage.getItem(StorageUser.TOKEN);
-  //   if (!token) {
-  //     history.replace('/login');
-  //   }
-  // });
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
@@ -83,12 +75,7 @@ function Product(props) {
     <React.Fragment>
       {loading ? (
         <div className={styles.sweet_loading}>
-          <ClipLoader
-            color={'#F5A623'}
-            loading={loading}
-            // css={override}
-            size={40}
-          />
+          <ClipLoader color={'#F5A623'} loading={loading} size={40} />
           <span>Please Wait</span>
         </div>
       ) : (
@@ -100,7 +87,6 @@ function Product(props) {
           <div className={styles.container}>
             <div className={styles.grid}>
               <div className={styles.grid__row}>
-                {/* <SliderBar /> */}
                 {loading ? (
                   <ProductSkeletonList length={12} />
                 ) : (
@@ -111,7 +97,7 @@ function Product(props) {
                 <Pagination
                   color="primary"
                   count={Math.ceil(pagination.total / pagination.limit)}
-                  page={pagination.page}
+                  page={pagination.page + 1}
                   onChange={handlePageChange}
                 />
               </div>
