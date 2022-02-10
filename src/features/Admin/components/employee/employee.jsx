@@ -147,7 +147,7 @@ function Employee() {
                 >
                   <i className="fas fa-plus category__add-icon"></i>
                   <span className="category__add-button__title">
-                    Add New Category
+                    Add New Employee
                   </span>
                 </button>
               </div>
