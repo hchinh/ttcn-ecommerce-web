@@ -12,7 +12,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <SnackbarProvider>
+        <SnackbarProvider autoHideDuration={1000}>
           <App />
         </SnackbarProvider>
       </BrowserRouter>
