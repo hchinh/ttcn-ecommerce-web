@@ -1,6 +1,5 @@
 import React from 'react';
 import './employee.scss';
-
 import { Dialog, Grid, IconButton } from '@material-ui/core';
 import DialogContent from '@material-ui/core/DialogContent';
 import { Close } from '@material-ui/icons';
@@ -8,8 +7,6 @@ import Table from 'components/Table/Table';
 import ConfirmationDialog from 'features/CRUD/components/ConfirmationDialog/ConfirmationDialog';
 import { useSnackbar } from 'notistack';
 import { useEffect, useState } from 'react';
-import customerApi from 'api/customerApi';
-import UpdateCustomer from 'features/CRUD/components/UpdateCustomer/UpdateCustomer';
 import employeeApi from 'api/employeeApi';
 import AddCategory from 'features/CRUD/components/AddEmployee/AddEmployee';
 import UpdateEmployee from 'features/CRUD/components/UpdateEmployee/UpdateEmployee';
@@ -115,14 +112,14 @@ function Employee() {
         const list = await employeeApi.getAll();
         setEmployeeList(
           list
-          .filter(x => x.enabled === 1)
-          .map((x) => ({
-            id: x.id,
-            name: x.name,
-            phoneNumber: x.phoneNumber,
-            email: x.email,
-            userName: x.userName
-          }))
+            .filter((x) => x.enabled === 1)
+            .map((x) => ({
+              id: x.id,
+              name: x.name,
+              phoneNumber: x.phoneNumber,
+              email: x.email,
+              userName: x.userName,
+            }))
         );
       } catch (error) {
         console.log('Failed to fetch Employee list', error);
@@ -168,7 +165,7 @@ function Employee() {
           <Close />
         </IconButton>
         <DialogContent>
-        {mode === MODE.CREATE && <AddCategory closeDialog={handleClose} />}
+          {mode === MODE.CREATE && <AddCategory closeDialog={handleClose} />}
 
           {mode === MODE.UPDATE && (
             <UpdateEmployee closeDialog={handleClose} Employee={Employee} />

@@ -1,6 +1,5 @@
 import React from 'react';
 import './employee.scss';
-
 import { Dialog, Grid, IconButton } from '@material-ui/core';
 import DialogContent from '@material-ui/core/DialogContent';
 import { Close } from '@material-ui/icons';
@@ -8,11 +7,8 @@ import Table from 'components/Table/Table';
 import ConfirmationDialog from 'features/CRUD/components/ConfirmationDialog/ConfirmationDialog';
 import { useSnackbar } from 'notistack';
 import { useEffect, useState } from 'react';
-import customerApi from 'api/customerApi';
-import UpdateCustomer from 'features/CRUD/components/UpdateCustomer/UpdateCustomer';
 import employeeApi from 'api/employeeApi';
 import AddCategory from 'features/CRUD/components/AddEmployee/AddEmployee';
-import UpdateEmployee from 'features/CRUD/components/UpdateEmployee/UpdateEmployee';
 import processOrderApi from 'api/processOrderApi';
 import UpdateProcessOrder from 'features/CRUD/components/UpdateProcessOrder/UpdateProcessOrder';
 
@@ -33,7 +29,7 @@ function ProcessOrder() {
   });
   const { enqueueSnackbar } = useSnackbar();
 
-  const EmployeeHead = ['ID', 'Product Name', 'Quantity', 'Status','Action'];
+  const EmployeeHead = ['ID', 'Product Name', 'Quantity', 'Status', 'Action'];
 
   const renderHead = (item, index) => <th key={index}>{item}</th>;
 
@@ -116,12 +112,12 @@ function ProcessOrder() {
       try {
         const list = await processOrderApi.getAll();
         setEmployeeList(
-          list
-          .map((x) => ({
+          list.map((x) => ({
             id: x.id,
             name: x.product.name,
             quantity: x.quantity,
-            status: (x.status == 0) ? 'Cancel' : (x.status == 1) ? 'Process' : 'Done'
+            status:
+              x.status === 0 ? 'Cancel' : x.status === 1 ? 'Process' : 'Done',
           }))
         );
       } catch (error) {
@@ -168,7 +164,7 @@ function ProcessOrder() {
           <Close />
         </IconButton>
         <DialogContent>
-        {mode === MODE.CREATE && <AddCategory closeDialog={handleClose} />}
+          {mode === MODE.CREATE && <AddCategory closeDialog={handleClose} />}
 
           {mode === MODE.UPDATE && (
             <UpdateProcessOrder closeDialog={handleClose} Employee={Employee} />

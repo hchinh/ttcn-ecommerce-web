@@ -1,13 +1,8 @@
-import customerApi from 'api/customerApi';
-import employeeApi from 'api/employeeApi';
 import processOrderApi from 'api/processOrderApi';
-import UpdateEmployeeForm from 'features/CRUD/UpdateEmployeeForm/UpdateEmployeeForm';
 import { useSnackbar } from 'notistack';
 import PropTypes from 'prop-types';
 import React from 'react';
-import UpdateCustomerForm from '../UpdateCustomerForm/UpdateCustomerForm';
 import UpdateProcessOrderForm from '../UpdateProcessOrderForm/UpdateProcessOrderForm';
-
 
 UpdateProcessOrder.propTypes = {
   closeDialog: PropTypes.func,
@@ -21,10 +16,10 @@ function UpdateProcessOrder({ closeDialog, processOrder }) {
     try {
       const formValues = {
         id: values.id,
-       status: values.status,
+        status: values.status,
         productId: 2,
         cartId: 1,
-       quantity: values.quantity
+        quantity: values.quantity,
       };
 
       await processOrderApi.update(formValues);
@@ -54,7 +49,10 @@ function UpdateProcessOrder({ closeDialog, processOrder }) {
 
   return (
     <div>
-      <UpdateProcessOrderForm onSubmit={handleUpdate} processOrder={processOrder} />
+      <UpdateProcessOrderForm
+        onSubmit={handleUpdate}
+        processOrder={processOrder}
+      />
     </div>
   );
 }

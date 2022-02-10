@@ -1,12 +1,9 @@
-import { yupResolver } from '@hookform/resolvers/yup';
 import { Avatar, Button, LinearProgress, makeStyles } from '@material-ui/core';
 import { LockOutlined } from '@material-ui/icons';
-import InputField from 'components/form-controls/InputField';
 import SelectField from 'components/form-controls/SelectFieldProcessOrder';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
 
 UpdateProcessOrderForm.propTypes = {
   onSubmit: PropTypes.func,
@@ -51,15 +48,12 @@ const useStyles = makeStyles((theme) => ({
 function UpdateProcessOrderForm({ onSubmit, processOrder }) {
   const classes = useStyles();
 
-
-
   const form = useForm({
     defaultValues: {
       id: processOrder.id,
       status: '',
-      quantity: processOrder.quantity
+      quantity: processOrder.quantity,
     },
-    
   });
 
   const handleUpdateprocessOrder = async (values) => {
@@ -81,9 +75,7 @@ function UpdateProcessOrderForm({ onSubmit, processOrder }) {
       <h3 className={classes.title}>Update processOrder</h3>
 
       <form onSubmit={form.handleSubmit(handleUpdateprocessOrder)}>
-      <SelectField name="status" label="status" form={form} />
-        
-
+        <SelectField name="status" label="status" form={form} />
 
         <Button
           className={classes.submit}
