@@ -47,7 +47,7 @@ function Product(props) {
   const handlePageChange = (e, page) => {
     const filters = {
       ...queryParams,
-      page: page,
+      page: page - 1,
     };
     history.push({
       pathname: history.location.pathname,
